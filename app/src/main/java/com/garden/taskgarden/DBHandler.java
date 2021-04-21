@@ -75,7 +75,30 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public Task findHandler(String taskTitle){
-        return new Task();
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + " = '" + taskTitle + "'";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        Task task = new Task();
+        if(cursor.moveToFirst()){
+            cursor.moveToFirst();
+            task.updateID(cursor.getInt(0));
+            task.updateTitle(cursor.getString(1));
+            task.updateDescription(cursor.getString(2));
+            switch(cursor.getInt(3)){
+                case 1:
+                    task.updateCompleted(true);
+                    break;
+                case 0:
+                default:
+                    task.updateCompleted(false);
+                    break;
+
+            }
+            task.updateCompletedBy(cursor.getInt(4));
+        }
+        cursor.close();
+        db.close();
+        return task;
     }
 
     public boolean deleteHandler(int ID){

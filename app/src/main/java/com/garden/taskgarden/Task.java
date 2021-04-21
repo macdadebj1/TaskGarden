@@ -8,7 +8,7 @@ public class Task {
     private int timeCompletedBy;
 
 
-    public Task(String title, String description, long completeBy){
+    public Task(String title, String description, int completeBy){
         this.taskTitle = title;
         this.taskDescription = description;
         this.timeCompletedBy = completeBy;
@@ -16,6 +16,10 @@ public class Task {
     }
 
     public Task(){} //Should probably remove..? doesn't really matter, just for simple testing...
+
+    public void updateID(int ID){
+        this.taskID = ID;
+    }
 
     public void updateTitle(String newTitle){
         this.taskTitle = newTitle;
@@ -25,10 +29,12 @@ public class Task {
         this.taskDescription = newDescription;
     }
 
-    public void markCompleted(){
-        this.completed = true;
+    public void updateCompleted(boolean state){
+        this.completed = state;
     }
-
+    public void updateCompletedBy(int time){
+        this.timeCompletedBy = time;
+    }
     public String getTitle(){
         return this.taskTitle;
     }
