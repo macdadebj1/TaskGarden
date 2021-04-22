@@ -61,7 +61,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
         return result;
     }
-
+// Need to check whether an entry already exists before adding :)
     public void addHandler(Task task){
         ContentValues values = new ContentValues();
         values.put(COLUMN_ID, task.getTaskID());
@@ -74,8 +74,8 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public Task findHandler(String taskTitle){
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + " = '" + taskTitle + "'";
+    public Task findHandler(int taskId){
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = '" + taskId + "'";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
         Task task = new Task();
@@ -102,11 +102,53 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public boolean deleteHandler(int ID){
-        return false;
+        boolean result = false;
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = '"+String.valueOf(ID)+"'";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        Task task = new Task();
+        if(cursor.moveToFirst()){
+            task.updateID(Integer.parseInt(cursor.getString(0)));
+            db.delete(TABLE_NAME,COLUMN_ID +"=?",new String[]{String.valueOf(task.getTaskID())});
+            // for the love of GOD, please revisit this steaming pile of crap, took from online tutorial and just want it to work :)
+            cursor.close();
+            result = true;
+        }
+        db.close();
+        return result;
     }
 
-    public boolean updateHandler(int ID, String taskName){
-        return false;
+    public boolean updateName(int ID, String taskName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues args = new ContentValues();
+        //args.put(COLUMN_ID,ID);
+        args.put(COLUMN_NAME,taskName);
+        return db.update(TABLE_NAME,args,COLUMN_ID+" = "+ ID,null) > 0;
+    }
+
+    public boolean updateDescription(int ID, String string){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues args = new ContentValues();
+        //args.put(COLUMN_ID,ID);
+        args.put(COLUMN_DESCRIPTION,string);
+        return db.update(TABLE_NAME,args,COLUMN_ID+" = "+ ID,null) > 0;
+    }
+
+    public boolean updateCompleted(int ID, int i){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues args = new ContentValues();
+        //args.put(COLUMN_ID,ID);
+
+        args.put(COLUMN_COMPLETED,i);
+        return db.update(TABLE_NAME,args,COLUMN_ID+" = "+ ID,null) > 0;
+    }
+
+    public boolean updateDescription(int ID, int i){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues args = new ContentValues();
+        //args.put(COLUMN_ID,ID);
+        args.put(COLUMN_COMPLETEDBY,i);
+        return db.update(TABLE_NAME,args,COLUMN_ID+" = "+ ID,null) > 0;
     }
 
 }
