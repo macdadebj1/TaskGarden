@@ -28,27 +28,35 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void loadTasks(View view){
-        DBHandler dbHandler = new DBHandler(this,null,null,1);
-        lst.setText(dbHandler.loadHandler());
-        taskId.setText("");
-        taskName.setText("");
-
+        try {
+            DBHandler dbHandler = new DBHandler(this, null, null, 1);
+            lst.setText(dbHandler.loadHandler());
+            taskId.setText("");
+            taskName.setText("");
+        } catch(Exception e){
+            Log.d(debugTag,"Got unexpected Exception when trying to load tasks in Main Activity." + e.toString());
+        }
     }
 
     public void addTask(View view){
-        DBHandler dbHandler = new DBHandler(this,null,null ,1);
-        int id = Integer.parseInt(taskId.getText().toString());
-        String title = taskName.getText().toString();
-        Task task = new Task();
-        task.updateID(id);
-        task.updateTitle(title);
-        dbHandler.addHandler(task);
-        taskId.setText("");
-        taskName.setText("");
+        try {
+            DBHandler dbHandler = new DBHandler(this, null, null, 1);
+            int ID = Integer.parseInt(taskId.getText().toString());
+            String title = taskName.getText().toString();
+            Task task = new Task();
+            task.updateID(ID);
+            task.updateTitle(title);
+            dbHandler.addHandler(task);
+            taskId.setText("");
+            taskName.setText("");
+        } catch(java.lang.NumberFormatException e){
+            Log.d(debugTag,"Got NumberFormatException while trying to add task in Main Activity!");
+        }
+
     }
     public void findTask(View view) throws NullTaskException {
         try {
-            Integer ID = Integer.parseInt(taskId.getText().toString());
+            int ID = Integer.parseInt(taskId.getText().toString());
 
             DBHandler dbHandler = new DBHandler(this, null, null, 1);
             Log.d(debugTag, "Value of ID int: " + taskId.getText().toString());
@@ -70,26 +78,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void deleteTask(View view){
-        DBHandler dbHandler = new DBHandler(this,null,null ,1);
-        boolean result = dbHandler.deleteHandler(Integer.parseInt(taskId.getText().toString()));
-        if(result){
-            taskId.setText("");
-            taskName.setText("");
-            lst.setText("Record Deleted");
-        }else{
-            taskId.setText("No Match Found");
+        try {
+            int ID = Integer.parseInt(taskId.getText().toString());
+            DBHandler dbHandler = new DBHandler(this, null, null, 1);
+            boolean result = dbHandler.deleteHandler(ID);
+            if (result) {
+                taskId.setText("");
+                taskName.setText("");
+                lst.setText("Record Deleted");
+            } else {
+                taskId.setText("No Match Found");
+            }
+        } catch(java.lang.NumberFormatException e){
+            Log.d(debugTag, "Got NumberFormatException while trying to delete task in Main Activity!");
         }
     }
 
     public void updateTask(View view){
-        DBHandler dbHandler = new DBHandler(this,null,null ,1);
-        boolean result = dbHandler.updateName(Integer.parseInt(taskId.getText().toString()), taskName.getText().toString());
-        if(result){
-            taskId.setText("");
-            taskName.setText("");
-            lst.setText("Record Updated");
-        }else {
-            taskId.setText("No Match Found");
+        try {
+            int ID = Integer.parseInt(taskId.getText().toString());
+            DBHandler dbHandler = new DBHandler(this, null, null, 1);
+            boolean result = dbHandler.updateName(ID, taskName.getText().toString());
+            if (result) {
+                taskId.setText("");
+                taskName.setText("");
+                lst.setText("Record Updated");
+            } else {
+                taskId.setText("No Match Found");
+            }
+        } catch(java.lang.NumberFormatException e){
+            Log.d(debugTag, "Got NumberFormatException while trying to update task in Main Activity!");
         }
     }
 }
