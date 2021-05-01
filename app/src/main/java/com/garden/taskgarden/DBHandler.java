@@ -75,6 +75,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public Task findHandler(int taskId){
+
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = '" + taskId + "'";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);

@@ -3,6 +3,7 @@ package com.garden.taskgarden;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
     TextView lst;
     EditText taskId;
     EditText taskName;
+
+    String debugTag = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +46,26 @@ public class MainActivity extends AppCompatActivity {
         taskId.setText("");
         taskName.setText("");
     }
-    public void findTask(View view){
-        DBHandler dbHandler = new DBHandler(this,null,null ,1);
-        Task task = dbHandler.findHandler(Integer.parseInt(taskId.getText().toString()));
-        if(task != null){
-            lst.setText(String.valueOf(task.getTaskID())+" "+task.getTitle()+ System.getProperty("line.separator"));
-            taskId.setText("");
-            taskName.setText("");
-        } else{
-            lst.setText("No Match Found");
-            taskId.setText("");
-            taskName.setText("");
+    public void findTask(View view) throws NullTaskException {
+        try {
+            Integer ID = Integer.parseInt(taskId.getText().toString());
+
+            DBHandler dbHandler = new DBHandler(this, null, null, 1);
+            Log.d(debugTag, "Value of ID int: " + taskId.getText().toString());
+            Task task = dbHandler.findHandler(ID);
+
+            if (task != null) {
+                lst.setText(String.valueOf(task.getTaskID()) + " " + task.getTitle() + System.getProperty("line.separator"));
+                taskId.setText("");
+                taskName.setText("");
+            } else {
+                lst.setText("No Match Found");
+                taskId.setText("");
+                taskName.setText("");
+                throw new NullTaskException("This task returned a null in findTask method in MainActivity!");
+            }
+        } catch(java.lang.NumberFormatException e){
+            Log.d(debugTag,"Got NumberFormatException while trying to find task in Main Activity!");
         }
     }
 
