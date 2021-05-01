@@ -7,101 +7,95 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/buttonLoad"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="9dp"
-        android:onClick="loadTasks"
-        android:text="Load"
-        app:layout_constraintBaseline_toBaselineOf="@+id/buttonUpdate"
-        app:layout_constraintEnd_toStartOf="@+id/buttonUpdate"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/buttonAdd"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="20dp"
-        android:onClick="addTask"
-        android:text="Add"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonFind"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonFind"
-        app:layout_constraintTop_toTopOf="@+id/buttonFind" />
-
-    <Button
         android:id="@+id/buttonFind"
-        android:layout_width="0dp"
+        android:layout_width="161dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="189dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="24dp"
         android:onClick="findTask"
         android:text="Find"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonAdd"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonUpdate" />
+        app:layout_constraintTop_toBottomOf="@+id/taskId" />
 
     <Button
-        android:id="@+id/buttonDelete"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="17dp"
-        android:onClick="deleteTask"
-        android:text="Delete"
-        app:layout_constraintBottom_toTopOf="@+id/buttonUpdate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonUpdate"
-        app:layout_constraintTop_toBottomOf="@+id/taskName" />
+        android:id="@+id/buttonLoad"
+        android:layout_width="114dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="12dp"
+        android:onClick="loadTasks"
+        android:text="Load"
+        app:layout_constraintEnd_toStartOf="@+id/buttonUpdate"
+        app:layout_constraintHorizontal_bias="0.346"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskId" />
 
     <Button
         android:id="@+id/buttonUpdate"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="14dp"
+        android:layout_width="112dp"
+        android:layout_height="63dp"
         android:onClick="updateTask"
         android:text="Update"
         app:layout_constraintBottom_toTopOf="@+id/buttonFind"
-        app:layout_constraintEnd_toStartOf="@+id/buttonDelete"
-        app:layout_constraintStart_toEndOf="@+id/buttonLoad"
-        app:layout_constraintTop_toBottomOf="@+id/buttonDelete" />
+        app:layout_constraintEnd_toStartOf="@+id/buttonAdd"
+        app:layout_constraintStart_toEndOf="@+id/buttonFind"
+        app:layout_constraintTop_toBottomOf="@+id/taskId" />
+
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="161dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:onClick="addTask"
+        android:text="Add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskName" />
+
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="114dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="8dp"
+        android:onClick="deleteTask"
+        android:text="Delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintStart_toEndOf="@+id/buttonUpdate"
+        app:layout_constraintTop_toBottomOf="@+id/taskName" />
 
     <EditText
         android:id="@+id/taskId"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="18dp"
+        android:layout_width="171dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="436dp"
+        android:layout_marginBottom="84dp"
         android:text="ID"
-        app:layout_constraintBaseline_toBaselineOf="@+id/taskName"
+        app:layout_constraintBottom_toTopOf="@+id/buttonFind"
         app:layout_constraintEnd_toStartOf="@+id/taskName"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.254"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/taskName"
-        android:layout_width="0dp"
+        android:layout_width="171dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="122dp"
+        android:layout_marginTop="436dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="89dp"
         android:text="Title"
-        app:layout_constraintBottom_toTopOf="@+id/buttonDelete"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAdd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/taskId"
-        app:layout_constraintTop_toBottomOf="@+id/lst" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/lst"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="12dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/taskName"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/taskList"
+        android:layout_width="378dp"
+        android:layout_height="391dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/taskId"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

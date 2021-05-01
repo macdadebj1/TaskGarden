@@ -1,18 +1,21 @@
 package com.garden.taskgarden;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView lst;
+    RecyclerView taskListGUIObject;
     EditText taskId;
     EditText taskName;
+    RecyclerViewAdapter adapter;
 
     String debugTag = "MainActivity";
 
@@ -20,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lst = (TextView) findViewById(R.id.lst);
+        taskListGUIObject = (RecyclerView) findViewById(R.id.taskList);
         taskId = (EditText) findViewById(R.id.taskId);
         taskName = (EditText) findViewById(R.id.taskName);
     }
@@ -30,7 +33,11 @@ public class MainActivity extends AppCompatActivity {
     public void loadTasks(View view){
         try {
             DBHandler dbHandler = new DBHandler(this, null, null, 1);
-            lst.setText(dbHandler.loadHandler());
+            ArrayList<Task> TaskList = dbHandler.loadHandler();
+            //taskListGUIObject.setText(TaskList.get(0).getTitle() +": "+ TaskList.get(0).getTaskDescription());
+            //taskListGUIObject.addFocusables();
+            setContentView(R.layout.row_layout);
+
             taskId.setText("");
             taskName.setText("");
         } catch(Exception e){
@@ -63,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
             Task task = dbHandler.findHandler(ID);
 
             if (task != null) {
-                lst.setText(String.valueOf(task.getTaskID()) + " " + task.getTitle() + System.getProperty("line.separator"));
+                //taskListGUIObject.setText(String.valueOf(task.getTaskID()) + " " + task.getTitle() + System.getProperty("line.separator"));
                 taskId.setText("");
                 taskName.setText("");
             } else {
-                lst.setText("No Match Found");
+                //taskListGUIObject.setText("No Match Found");
                 taskId.setText("");
                 taskName.setText("");
                 throw new NullTaskException("This task returned a null in findTask method in MainActivity!");
@@ -85,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             if (result) {
                 taskId.setText("");
                 taskName.setText("");
-                lst.setText("Record Deleted");
+                //taskListGUIObject.setText("Record Deleted");
             } else {
                 taskId.setText("No Match Found");
             }
@@ -102,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             if (result) {
                 taskId.setText("");
                 taskName.setText("");
-                lst.setText("Record Updated");
+                //taskListGUIObject.setText("Record Updated");
             } else {
                 taskId.setText("No Match Found");
             }

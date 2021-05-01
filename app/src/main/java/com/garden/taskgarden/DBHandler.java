@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.content.ContentValues;
 import android.database.Cursor;
+import java.util.ArrayList;
 //import java.lang.StringBuilder;
 
 import androidx.annotation.Nullable;
@@ -30,8 +31,8 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" +
-                COLUMN_ID + " INTEGER PRIMARYKEY, " +
+        String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (";
+        CREATE_TABLE += COLUMN_ID + " INTEGER PRIMARYKEY, " +
                 COLUMN_NAME + " TEXT, " +
                 COLUMN_DESCRIPTION + " TEXT, " +
                 COLUMN_COMPLETED + " INTEGER, " +
@@ -47,19 +48,18 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
-    public String loadHandler(){
+    public ArrayList<Task> loadHandler(){
+        ArrayList<Task> TaskArray = new ArrayList<>();
         String result = "";
         String query ="SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
         while(cursor.moveToNext()){
-            int result_0 = cursor.getInt(0);
-            String result_1 = cursor.getString(1);
-            result += String.valueOf(result_0) + " " +result_1 + System.getProperty("line.separator");
+            TaskArray.add(new Task(cursor.getString(1),cursor.getString(2),cursor.getInt(4)));
         }
         cursor.close();
         db.close();
-        return result;
+        return TaskArray;
     }
 // Need to check whether an entry already exists before adding :)
     public void addHandler(Task task){
