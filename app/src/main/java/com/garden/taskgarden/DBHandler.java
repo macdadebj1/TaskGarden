@@ -10,6 +10,11 @@ import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
 
+
+/**
+ * DO NOT INTERFACE WITH THIS CLASS DIRECTLY!!!
+ * IF YOU WANT TO TALK TO THE DATABASE, PLEASE TALK TO DBInterface.java
+ * */
 public class DBHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
