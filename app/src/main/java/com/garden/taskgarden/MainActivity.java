@@ -9,9 +9,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+
+
+    settingsTalker settings = new settingsTalker(this);
 
     RecyclerView taskListGUIObject;
     EditText taskId;
@@ -20,15 +25,15 @@ public class MainActivity extends AppCompatActivity {
 
     DBInterface dbInterface;
 
-    String debugTag = "MainActivity";
+    private static final String debugTag = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        taskListGUIObject = (RecyclerView) findViewById(R.id.taskList);
-        taskId = (EditText) findViewById(R.id.taskId);
-        taskName = (EditText) findViewById(R.id.taskName);
+        taskListGUIObject = findViewById(R.id.taskList);
+        taskId = findViewById(R.id.taskId);
+        taskName = findViewById(R.id.taskName);
         dbInterface = new DBInterface();
 
     }
