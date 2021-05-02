@@ -27,8 +27,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
-        LayoutInflater lInfalter = LayoutInflater.from(context);
-        View v = lInfalter.inflate(R.layout.row_layout,parent,false);
+        LayoutInflater lInflater = LayoutInflater.from(context);
+        View v = lInflater.inflate(R.layout.row_layout,parent,false);
         return new ViewHolder(v);
     }
 
