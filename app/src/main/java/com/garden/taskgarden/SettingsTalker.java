@@ -10,7 +10,7 @@ import android.util.Log;
  *
  * @author Blake MacDade
  * */
-public class settingsTalker {
+public class SettingsTalker {
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -20,7 +20,7 @@ public class settingsTalker {
     private static final String debugTag = "settingsTalker";
 
 
-    public settingsTalker(Context context){
+    public SettingsTalker(Context context){
         this.context = context;
         preferences = context.getApplicationContext().getSharedPreferences(settingsFileName,0);
 

@@ -9,14 +9,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
-    settingsTalker settings = new settingsTalker(this);
+    SettingsTalker settingsTalker;
 
     RecyclerView taskListGUIObject;
     EditText taskId;
@@ -35,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         taskId = findViewById(R.id.taskId);
         taskName = findViewById(R.id.taskName);
         dbInterface = new DBInterface();
+        settingsTalker = new SettingsTalker(this);
 
     }
 
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             DBHandler dbHandler = new DBHandler(this, null, null, 1);
             ArrayList<Task> TaskList = dbHandler.loadHandler();
             //taskListGUIObject.setText(TaskList.get(0).getTitle() +": "+ TaskList.get(0).getTaskDescription());
-            setContentView(R.layout.row_layout);
+            //setContentView(R.layout.row_layout);
             adapter = new RecyclerViewAdapter(TaskList,getApplication());
             taskListGUIObject.setAdapter(adapter);
             taskListGUIObject.setLayoutManager(new LinearLayoutManager(MainActivity.this));
