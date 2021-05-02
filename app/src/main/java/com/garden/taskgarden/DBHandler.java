@@ -37,7 +37,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (";
-        CREATE_TABLE += COLUMN_ID + " INTEGER PRIMARYKEY, " +
+        CREATE_TABLE += COLUMN_ID + " INTEGER PRIMARY KEY NOT NULL, " +
                 COLUMN_NAME + " TEXT, " +
                 COLUMN_DESCRIPTION + " TEXT, " +
                 COLUMN_COMPLETED + " INTEGER, " +
@@ -109,7 +109,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public boolean deleteHandler(int ID){
         boolean result = false;
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = '"+String.valueOf(ID)+"'";
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = '"+ ID +"'";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
         Task task = new Task();
