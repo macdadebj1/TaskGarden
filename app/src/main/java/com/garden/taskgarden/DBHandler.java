@@ -1,10 +1,13 @@
 package com.garden.taskgarden;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
+
 import java.util.ArrayList;
 //import java.lang.StringBuilder;
 
@@ -26,6 +29,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_COMPLETED = "Completed";
     public static final String COLUMN_COMPLETEDBY = "CompletedBy";
 
+    public static final String debugTag = "DBHandler";
 
     public DBHandler(Context context,String name,SQLiteDatabase.CursorFactory factory, int version) {
 
@@ -68,15 +72,19 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 // Need to check whether an entry already exists before adding :)
     public void addHandler(Task task){
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_ID, task.getTaskID());
-        values.put(COLUMN_NAME,task.getTitle());
-        values.put(COLUMN_COMPLETED,task.getCompleted());
-        values.put(COLUMN_COMPLETEDBY,task.getTimeToCompletedBy());
-        values.put(COLUMN_DESCRIPTION,task.getTaskDescription());
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(TABLE_NAME, null, values);
-        db.close();
+        try {
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_ID, task.getTaskID());
+            values.put(COLUMN_NAME, task.getTitle());
+            values.put(COLUMN_COMPLETED, task.getCompleted());
+            values.put(COLUMN_COMPLETEDBY, task.getTimeToCompletedBy());
+            values.put(COLUMN_DESCRIPTION, task.getTaskDescription());
+            SQLiteDatabase db = this.getWritableDatabase();
+            db.insert(TABLE_NAME, null, values);
+            db.close();
+        } catch(SQLiteConstraintException e){
+            Log.d(debugTag,"Got SQLiteConstraintException in addHandler method of DBHandler");
+        }
     }
 
     public Task findHandler(int taskId){
