@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     EditText taskName;
     RecyclerViewAdapter adapter;
 
-    DBInterface dbInterface;
+    //DBInterface dbInterface;
 
     private static final String debugTag = "MainActivity";
 
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         taskListGUIObject = findViewById(R.id.taskList);
         taskId = findViewById(R.id.taskId);
         taskName = findViewById(R.id.taskName);
-        dbInterface = new DBInterface();
+        //dbInterface = new DBInterface();
         settingsTalker = new SettingsTalker(this);
 
     }
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             Task task = new Task();
             task.updateID(ID);
             task.updateTitle(title);
-            dbInterface.addTask(task,this);
+            DBInterface.addTask(task,this);
             taskId.setText("");
             taskName.setText("");
         } catch(java.lang.NumberFormatException e){
@@ -74,13 +74,10 @@ public class MainActivity extends AppCompatActivity {
             int ID = Integer.parseInt(taskId.getText().toString());
 
             Log.d(debugTag, "Value of ID int: " + taskId.getText().toString());
-            Task task = dbInterface.findTask(ID,this);
+            Task task = DBInterface.findTask(ID,this);
             taskId.setText("");
             taskName.setText("");
-            if (task != null) {
-                //taskListGUIObject.setText(String.valueOf(task.getTaskID()) + " " + task.getTitle() + System.getProperty("line.separator"));
-            } else {
-                //taskListGUIObject.setText("No Match Found");
+            if (task == null) {
                 throw new NullTaskException("This task returned a null in findTask method in MainActivity!");
             }
         } catch(java.lang.NumberFormatException e){
@@ -91,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     public void deleteTask(View view){
         try {
             int ID = Integer.parseInt(taskId.getText().toString());
-            if (dbInterface.deleteTask(ID,this)) {
+            if (DBInterface.deleteTask(ID,this)) {
                 taskId.setText("");
                 taskName.setText("");
                 //taskListGUIObject.setText("Record Deleted");
@@ -106,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     public void updateTask(View view){
         try {
             int ID = Integer.parseInt(taskId.getText().toString());
-            if (dbInterface.updateTask(ID,this,taskName.getText().toString())) {
+            if (DBInterface.updateTask(ID,this,taskName.getText().toString())) {
                 taskId.setText("");
                 taskName.setText("");
                 //taskListGUIObject.setText("Record Updated");

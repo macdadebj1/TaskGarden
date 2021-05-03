@@ -2,7 +2,6 @@ package com.garden.taskgarden;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.View;
 
 /**
  * This Class acts as an abstraction layer between DBHandler.java and any activity that may want to
@@ -24,7 +23,7 @@ public class DBInterface {
      *
      * @return new Task object that represents data with primary key of ID, CAN BE NULL!
      * */
-    public Task findTask(int ID, Context context) {
+    public static Task findTask(int ID, Context context) {
         DBHandler dbHandler = new DBHandler(context, null, null, 1);
         return dbHandler.findHandler(ID);
     }
@@ -35,7 +34,7 @@ public class DBInterface {
      * @param context Application Context.
      *
      * */
-    public void addTask(Task task, Context context){
+    public static void addTask(Task task, Context context){
         DBHandler dbHandler = new DBHandler(context, null, null, 1);
         dbHandler.addHandler(task);
 
@@ -49,7 +48,7 @@ public class DBInterface {
      *
      * @return returns the state of the deletion, true if successful.
      * */
-    public boolean deleteTask(int ID, Context context){
+    public static boolean deleteTask(int ID, Context context){
         DBHandler dbHandler = new DBHandler(context, null, null, 1);
         return dbHandler.deleteHandler(ID);
     }
@@ -63,7 +62,7 @@ public class DBInterface {
      *
      * @return returns the state of the update, true if successful.
      * */
-    public boolean updateTask(int ID,Context context, String updatedTitle){
+    public static boolean updateTask(int ID,Context context, String updatedTitle){
         DBHandler dbHandler = new DBHandler(context, null, null, 1);
         return dbHandler.updateName(ID, updatedTitle);
     }
