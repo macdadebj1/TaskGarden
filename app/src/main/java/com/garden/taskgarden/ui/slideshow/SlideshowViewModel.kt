@@ -1,19 +1,15 @@
-package com.garden.taskgarden.ui.slideshow;
+package com.garden.taskgarden.ui.slideshow
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
-public class SlideshowViewModel extends ViewModel {
+class SlideshowViewModel : ViewModel() {
+    private val mText: MutableLiveData<String?> = MutableLiveData()
+    val text: LiveData<String?>
+        get() = mText
 
-    private final MutableLiveData<String> mText;
-
-    public SlideshowViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
-    }
-
-    public LiveData<String> getText() {
-        return mText;
+    init {
+        mText.value = "This is slideshow fragment"
     }
 }

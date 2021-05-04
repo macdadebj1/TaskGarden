@@ -1,64 +1,48 @@
-package com.garden.taskgarden;
+package com.garden.taskgarden
 
-import android.app.Application;
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.app.Application
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import java.util.*
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-
-
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-
-    private ArrayList<Task> taskList;
-    Context context;
-    View.OnClickListener listener;
-
-    public RecyclerViewAdapter(ArrayList<Task> inAL, Application application){
-        this.taskList = inAL;
-        this.context = application;
+class RecyclerViewAdapter(private val taskList: ArrayList<Task>, application: Application) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+    var context: Context
+    var listener: View.OnClickListener? = null
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        context = parent.context
+        val lInflater = LayoutInflater.from(context)
+        val v = lInflater.inflate(R.layout.row_layout, parent, false)
+        return ViewHolder(v)
     }
 
-
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        context = parent.getContext();
-        LayoutInflater lInflater = LayoutInflater.from(context);
-        View v = lInflater.inflate(R.layout.row_layout,parent,false);
-        return new ViewHolder(v);
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val index = holder.adapterPosition
+        holder.title.text = taskList[position].title
+        holder.description.text = taskList[position].description
+        holder.view.setOnClickListener { listener!!.onClick(holder.view) }
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final int index = holder.getAdapterPosition();
-        holder.title.setText(taskList.get(position).getTitle());
-        holder.description.setText(taskList.get(position).getDescription());
-        holder.view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onClick(holder.view);
-            }
-        });
+    override fun getItemCount(): Int {
+        return taskList.size
     }
 
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var title: TextView
+        var description: TextView
+        var view: View
 
-    public int getItemCount() {
-        return taskList.size();
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView title;
-        public TextView description;
-        View view;
-        public ViewHolder(View itemView) {
-            super(itemView);
-            this.title = (TextView) itemView.findViewById(R.id.Tasktitle);
-            this.description = (TextView) itemView.findViewById(R.id.Taskdescription);
-            this.view = itemView;
+        init {
+            title = itemView.findViewById<View>(R.id.Tasktitle) as TextView
+            description = itemView.findViewById<View>(R.id.Taskdescription) as TextView
+            view = itemView
         }
+    }
+
+    init {
+        context = application
     }
 }

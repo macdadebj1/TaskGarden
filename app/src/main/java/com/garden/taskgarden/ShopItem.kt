@@ -1,5 +1,4 @@
-package com.garden.taskgarden;
-
+package com.garden.taskgarden
 
 /**
  * Class to represent an item in the shop.
@@ -7,57 +6,44 @@ package com.garden.taskgarden;
  * as a resource name.
  *
  * @author Blake MacDade
- * */
-public class ShopItem {
+ */
+class ShopItem {
+    var name: String
+        private set
+    var description: String
+        private set
+    var price: Int
+        private set
+    var resourceName: String
+        private set
 
-    private String Name;
-    private String Description;
-    private int Price;
-    private String ResourceName;
-
-    public ShopItem(String name, String description, int price, String resourceName){
-        this.Name = name;
-        this.Description = description;
-        this.Price = price;
-        this.ResourceName = resourceName;
+    constructor(name: String, description: String, price: Int, resourceName: String) {
+        this.name = name
+        this.description = description
+        this.price = price
+        this.resourceName = resourceName
     }
 
-    public ShopItem(String name, String description, int price){
-        this.Name = name;
-        this.Description = description;
-        this.Price = price;
-        this.ResourceName = name;
+    constructor(name: String, description: String, price: Int) {
+        this.name = name
+        this.description = description
+        this.price = price
+        resourceName = name
     }
 
-    public String getName(){
-        return this.Name;
+    fun updateName(name: String) {
+        this.name = name
     }
 
-    public String getDescription(){
-        return this.Description;
-    }
-    public int getPrice(){
-        return this.Price;
+    fun updateDescription(description: String) {
+        this.description = description
     }
 
-    public String getResourceName(){
-        return this.ResourceName;
+    fun updatePrice(price: Int) {
+        this.price = price
     }
 
-    public void updateName(String name){
-        this.Name = name;
+    fun updateResourceName(resourceName: String) {
+        this.resourceName = resourceName
     }
-
-    public void updateDescription(String description){
-        this.Description = description;
-    }
-
-    public void updatePrice(int price){
-        this.Price = price;
-    }
-
-    public void updateResourceName(String resourceName){
-        this.ResourceName = resourceName;
-    }
-
 }

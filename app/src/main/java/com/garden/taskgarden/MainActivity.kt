@@ -1,122 +1,116 @@
-package com.garden.taskgarden;
+package com.garden.taskgarden
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.garden.taskgarden.DBInterface.addTask
+import com.garden.taskgarden.DBInterface.deleteTask
+import com.garden.taskgarden.DBInterface.findTask
+import com.garden.taskgarden.DBInterface.updateTask
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity {
-
-    SettingsTalker settingsTalker;
-
-    RecyclerView taskListGUIObject;
-    EditText taskId;
-    EditText taskName;
-    RecyclerViewAdapter adapter;
-
-    //DBInterface dbInterface;
-
-    private static final String debugTag = "MainActivity";
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        taskListGUIObject = findViewById(R.id.taskList);
-        taskId = findViewById(R.id.taskId);
-        taskName = findViewById(R.id.taskName);
+class MainActivity : AppCompatActivity() {
+    var settingsTalker: SettingsTalker? = null
+    var taskListGUIObject: RecyclerView? = null
+    var taskId: EditText? = null
+    var taskName: EditText? = null
+    var adapter: RecyclerViewAdapter? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        taskListGUIObject = findViewById(R.id.taskList)
+        taskId = findViewById(R.id.taskId)
+        taskName = findViewById(R.id.taskName)
         //dbInterface = new DBInterface();
-        settingsTalker = new SettingsTalker(this);
-
+        settingsTalker = SettingsTalker(this)
     }
 
-
-
-    public void loadTasks(View view){
+    fun loadTasks(view: View?) {
         try {
-            DBHandler dbHandler = new DBHandler(this, null, null, 1);
-            ArrayList<Task> TaskList = dbHandler.loadHandler();
+            val dbHandler = DBHandler(this, null, null, 1)
+            val TaskList = dbHandler.loadHandler()
             //taskListGUIObject.setText(TaskList.get(0).getTitle() +": "+ TaskList.get(0).getTaskDescription());
             //setContentView(R.layout.row_layout);
-            adapter = new RecyclerViewAdapter(TaskList,getApplication());
-            taskListGUIObject.setAdapter(adapter);
-            taskListGUIObject.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-            taskId.setText("");
-            taskName.setText("");
-        } catch(Exception e){
-            Log.d(debugTag,"Got unexpected Exception when trying to load tasks in Main Activity." + e.toString());
+            adapter = RecyclerViewAdapter(TaskList, application)
+            taskListGUIObject!!.adapter = adapter
+            taskListGUIObject!!.layoutManager = LinearLayoutManager(this@MainActivity)
+            taskId!!.setText("")
+            taskName!!.setText("")
+        } catch (e: Exception) {
+            Log.d(debugTag, "Got unexpected Exception when trying to load tasks in Main Activity.$e")
         }
     }
 
-    public void addTask(View view){
+    fun addTask(view: View?) {
         try {
             //int ID = Integer.parseInt(taskId.getText().toString());
-            String title = taskName.getText().toString();
-            Task task = new Task();
+            val title = taskName!!.text.toString()
+            val task = Task()
             //task.updateID(ID);
-            task.updateTitle(title);
-            task.updateDescription("TestDescription!!!");
-            DBInterface.addTask(task,this);
-            taskId.setText("");
-            taskName.setText("");
-        } catch(java.lang.NumberFormatException e){
-            Log.d(debugTag,"Got NumberFormatException while trying to add task in Main Activity!");
+            task.updateTitle(title)
+            task.updateDescription("TestDescription!!!")
+            addTask(task, this)
+            taskId!!.setText("")
+            taskName!!.setText("")
+        } catch (e: NumberFormatException) {
+            Log.d(debugTag, "Got NumberFormatException while trying to add task in Main Activity!")
         }
-
     }
-    public Task findTask(View view) throws NullTaskException {
-        try {
-            int ID = Integer.parseInt(taskId.getText().toString());
 
-            Log.d(debugTag, "Value of ID int: " + taskId.getText().toString());
-            Task task = DBInterface.findTask(ID,this);
-            taskId.setText("");
-            taskName.setText("");
+    fun findTask(view: View?): Task? {
+        try {
+            val ID: Int = Integer.parseInt(taskId!!.text.toString())
+            Log.d(debugTag, "Value of ID int: " + taskId!!.text.toString())
+            val task = findTask(ID, this)
+            taskId!!.setText("")
+            taskName!!.setText("")
             if (task == null) {
-                throw new NullTaskException("This task returned a null in findTask method in MainActivity!");
+                throw NullTaskException("This task returned a null in findTask method in MainActivity!")
             }
-            return task;
-        } catch(java.lang.NumberFormatException e){
-            Log.d(debugTag,"Got NumberFormatException while trying to find task in Main Activity!");
+            return task
+        } catch (e: NumberFormatException) {
+            Log.d(debugTag, "Got NumberFormatException while trying to find task in Main Activity!")
         }
-        return null;
+        return null
     }
 
-    public void deleteTask(View view){
+    fun deleteTask(view: View?) {
         try {
-            int ID = Integer.parseInt(taskId.getText().toString());
-            if (DBInterface.deleteTask(ID,this)) {
-                taskId.setText("");
-                taskName.setText("");
+            val ID: Int = Integer.parseInt(taskId!!.text.toString())
+            if (deleteTask(ID, this)) {
+                taskId!!.setText("")
+                taskName!!.setText("")
                 //taskListGUIObject.setText("Record Deleted");
             } else {
-                taskId.setText("No Match Found");
+                taskId!!.setText("No Match Found")
             }
-        } catch(java.lang.NumberFormatException e){
-            Log.d(debugTag, "Got NumberFormatException while trying to delete task in Main Activity!");
+        } catch (e: NumberFormatException) {
+            Log.d(debugTag, "Got NumberFormatException while trying to delete task in Main Activity!")
         }
     }
 
-    public void updateTask(View view){
-        Task task = new Task();
-        task.updateTitle(taskName.getText().toString());
-        task.updateID(Integer.parseInt(taskId.getText().toString()));
+    fun updateTask(view: View?) {
+        val task = Task()
+        task.updateTitle(taskName!!.text.toString())
+        task.updateID(Integer.parseInt(taskId!!.text.toString()))
         try {
-            if (DBInterface.updateTask(task,this)) {
-                taskId.setText("");
-                taskName.setText("");
+            if (updateTask(task, this)) {
+                taskId!!.setText("")
+                taskName!!.setText("")
                 //taskListGUIObject.setText("Record Updated");
             } else {
-                taskId.setText("No Match Found");
+                taskId!!.setText("No Match Found")
             }
-        } catch(java.lang.NumberFormatException e){
-            Log.d(debugTag, "Got NumberFormatException while trying to update task in Main Activity!");
+        } catch (e: NumberFormatException) {
+            Log.d(debugTag, "Got NumberFormatException while trying to update task in Main Activity!")
         }
+    }
+
+    companion object {
+        //DBInterface dbInterface;
+        private const val debugTag = "MainActivity"
     }
 }

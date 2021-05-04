@@ -1,19 +1,15 @@
-package com.garden.taskgarden.ui.gallery;
+package com.garden.taskgarden.ui.gallery
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
-public class GalleryViewModel extends ViewModel {
+class GalleryViewModel : ViewModel() {
+    private val mText: MutableLiveData<String?> = MutableLiveData()
+    val text: LiveData<String?>
+        get() = mText
 
-    private final MutableLiveData<String> mText;
-
-    public GalleryViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
-    }
-
-    public LiveData<String> getText() {
-        return mText;
+    init {
+        mText.value = "This is gallery fragment"
     }
 }
