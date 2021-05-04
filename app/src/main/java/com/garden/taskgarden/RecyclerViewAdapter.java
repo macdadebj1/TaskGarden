@@ -36,7 +36,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final int index = holder.getAdapterPosition();
         holder.title.setText(taskList.get(position).getTitle());
-        holder.description.setText(taskList.get(position).getTaskDescription());
+        holder.description.setText(taskList.get(position).getDescription());
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

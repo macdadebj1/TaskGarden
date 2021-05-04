@@ -14,6 +14,8 @@ import java.util.ArrayList;
 /**
  * DO NOT INTERFACE WITH THIS CLASS DIRECTLY!!!
  * IF YOU WANT TO TALK TO THE DATABASE, PLEASE TALK TO DBInterface.java
+ *
+ * @author Blake MacDade
  * */
 public class DBHandler extends SQLiteOpenHelper {
 
@@ -66,15 +68,20 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
         return TaskArray;
     }
-// Need to check whether an entry already exists before adding :)
+
+    /**
+     * addHandler is a dumb method, attempts to add a task to the database at the index of task.taskID.
+     *
+     * @param task the task object to add to the database.
+     * */
     public void addHandler(Task task){
         try {
             ContentValues values = new ContentValues();
-            values.put(COLUMN_ID, task.getTaskID());
+            values.put(COLUMN_ID, task.getID());
             values.put(COLUMN_NAME, task.getTitle());
             values.put(COLUMN_COMPLETED, task.getCompleted());
             values.put(COLUMN_COMPLETEDBY, task.getTimeToCompletedBy());
-            values.put(COLUMN_DESCRIPTION, task.getTaskDescription());
+            values.put(COLUMN_DESCRIPTION, task.getDescription());
             SQLiteDatabase db = this.getWritableDatabase();
             db.insert(TABLE_NAME, null, values);
             db.close();
@@ -82,6 +89,7 @@ public class DBHandler extends SQLiteOpenHelper {
             Log.d(debugTag,"Got SQLiteConstraintException in addHandler method of DBHandler");
         }
     }
+
 
     public Task findHandler(int taskId){
 
@@ -119,7 +127,7 @@ public class DBHandler extends SQLiteOpenHelper {
         Task task = new Task();
         if(cursor.moveToFirst()){
             task.updateID(Integer.parseInt(cursor.getString(0)));
-            db.delete(TABLE_NAME,COLUMN_ID +"=?",new String[]{String.valueOf(task.getTaskID())});
+            db.delete(TABLE_NAME,COLUMN_ID +"=?",new String[]{String.valueOf(task.getID())});
             // for the love of GOD, please revisit this steaming pile of crap, took from online tutorial and just want it to work :)
             cursor.close();
             result = true;
@@ -128,6 +136,13 @@ public class DBHandler extends SQLiteOpenHelper {
         return result;
     }
 
+    /**
+     * updateTask updates a task record in the databse
+     *
+     * @param task the updated task to pass to the database.
+     *
+     * @return the number of rows updated.
+     * */
     public boolean updateTask(Task task){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues args = new ContentValues();
@@ -135,8 +150,8 @@ public class DBHandler extends SQLiteOpenHelper {
         args.put(COLUMN_NAME, task.getTitle());
         args.put(COLUMN_COMPLETED, task.getCompleted());
         args.put(COLUMN_COMPLETEDBY, task.getTimeToCompletedBy());
-        args.put(COLUMN_DESCRIPTION, task.getTaskDescription());
-        return db.update(TABLE_NAME,args,COLUMN_ID+" = "+ task.getTaskID(),null) > 0;
+        args.put(COLUMN_DESCRIPTION, task.getDescription());
+        return db.update(TABLE_NAME,args,COLUMN_ID+" = "+ task.getID(),null) > 0;
     }
 
 
