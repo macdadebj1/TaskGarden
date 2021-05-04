@@ -128,37 +128,16 @@ public class DBHandler extends SQLiteOpenHelper {
         return result;
     }
 
-    public boolean updateName(int ID, String taskName){
+    public boolean updateTask(Task task){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues args = new ContentValues();
         //args.put(COLUMN_ID,ID);
-        args.put(COLUMN_NAME,taskName);
-        return db.update(TABLE_NAME,args,COLUMN_ID+" = "+ ID,null) > 0;
+        args.put(COLUMN_NAME, task.getTitle());
+        args.put(COLUMN_COMPLETED, task.getCompleted());
+        args.put(COLUMN_COMPLETEDBY, task.getTimeToCompletedBy());
+        args.put(COLUMN_DESCRIPTION, task.getTaskDescription());
+        return db.update(TABLE_NAME,args,COLUMN_ID+" = "+ task.getTaskID(),null) > 0;
     }
 
-    public boolean updateDescription(int ID, String string){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues args = new ContentValues();
-        //args.put(COLUMN_ID,ID);
-        args.put(COLUMN_DESCRIPTION,string);
-        return db.update(TABLE_NAME,args,COLUMN_ID+" = "+ ID,null) > 0;
-    }
-
-    public boolean updateCompleted(int ID, int i){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues args = new ContentValues();
-        //args.put(COLUMN_ID,ID);
-
-        args.put(COLUMN_COMPLETED,i);
-        return db.update(TABLE_NAME,args,COLUMN_ID+" = "+ ID,null) > 0;
-    }
-
-    public boolean updateDescription(int ID, int i){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues args = new ContentValues();
-        //args.put(COLUMN_ID,ID);
-        args.put(COLUMN_COMPLETEDBY,i);
-        return db.update(TABLE_NAME,args,COLUMN_ID+" = "+ ID,null) > 0;
-    }
 
 }

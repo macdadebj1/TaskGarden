@@ -1,5 +1,11 @@
 package com.garden.taskgarden;
 
+
+/**
+ * Task represents a task object
+ *
+ * @author Blake MacDade
+ * */
 public class Task {
     private int taskID;
     private String taskTitle;
@@ -17,6 +23,9 @@ public class Task {
 
     public Task(){} //Should probably remove..? doesn't really matter, just for simple testing...
 
+    /**
+     * Do you really need to call this yourself?
+     * */
     public void updateID(int ID){
         this.taskID = ID;
     }

@@ -66,15 +66,14 @@ public class DBInterface {
     /**
      * updateTask is a simple method with no error checking, deletes a task from the database;
      *
-     * @param ID The task ID of the record to delete.
+     * @param task The updated task object.
      * @param context Application Context.
-     * @param updatedTitle updated title of the task.
      *
      * @return returns the state of the update, true if successful.
      * */
-    public static boolean updateTask(int ID,Context context, String updatedTitle){
+    public static boolean updateTask(Task task,Context context){
         DBHandler dbHandler = new DBHandler(context, null, null, 1);
-        return dbHandler.updateName(ID, updatedTitle);
+        return dbHandler.updateTask(task);
     }
 
 }

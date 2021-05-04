@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-    public void findTask(View view) throws NullTaskException {
+    public Task findTask(View view) throws NullTaskException {
         try {
             int ID = Integer.parseInt(taskId.getText().toString());
 
@@ -81,9 +81,11 @@ public class MainActivity extends AppCompatActivity {
             if (task == null) {
                 throw new NullTaskException("This task returned a null in findTask method in MainActivity!");
             }
+            return task;
         } catch(java.lang.NumberFormatException e){
             Log.d(debugTag,"Got NumberFormatException while trying to find task in Main Activity!");
         }
+        return null;
     }
 
     public void deleteTask(View view){
@@ -102,9 +104,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateTask(View view){
+        Task task = new Task();
+        task.updateTitle(taskName.getText().toString());
+        task.updateID(Integer.parseInt(taskId.getText().toString()));
         try {
-            int ID = Integer.parseInt(taskId.getText().toString());
-            if (DBInterface.updateTask(ID,this,taskName.getText().toString())) {
+            if (DBInterface.updateTask(task,this)) {
                 taskId.setText("");
                 taskName.setText("");
                 //taskListGUIObject.setText("Record Updated");
