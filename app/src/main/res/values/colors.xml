@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <complimentary>
+        <color name="Dark_Green">#FF7C942E</color>
+        <color name="Light_Green">#FFC2E05C</color>
+        <color name="Blue">#FF729EE0</color>
+        <color name="Light_Red">#FFE05846</color>
+        <color name="Dark_Red">#FF944035</color>
+    </complimentary>
 </resources>
