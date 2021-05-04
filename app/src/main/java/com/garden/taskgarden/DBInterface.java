@@ -12,6 +12,7 @@ import android.util.Log;
 public class DBInterface {
 
     String debugTag = "DBInterface";
+    // added a comment to test the commit
 
 
     /**
