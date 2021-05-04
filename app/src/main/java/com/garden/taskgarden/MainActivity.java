@@ -56,11 +56,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void addTask(View view){
         try {
-            int ID = Integer.parseInt(taskId.getText().toString());
+            //int ID = Integer.parseInt(taskId.getText().toString());
             String title = taskName.getText().toString();
             Task task = new Task();
-            task.updateID(ID);
+            //task.updateID(ID);
             task.updateTitle(title);
+            task.updateDescription("TestDescription!!!");
             DBInterface.addTask(task,this);
             taskId.setText("");
             taskName.setText("");

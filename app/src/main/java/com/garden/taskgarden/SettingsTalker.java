@@ -36,13 +36,42 @@ public class SettingsTalker {
         editor.apply();
     }
     /**
+     * addEntry adds an entry to the settings file.
+     * @param key key string to store the data at.
+     * @param value value int to store.
+     * */
+    public void addEntry(String key, int value){
+        editor = preferences.edit();
+        editor.putInt(key,value);
+        editor.apply();
+    }
+
+    public void updateEntry(String key, String value){
+        addEntry(key,value);
+    }
+
+    public void updateEntry(String key, int value){
+        addEntry(key,value);
+    }
+
+    /**
      * getEntry returns an entry from the settings file.
      * @param key key string to look up and return data from settings file.
      * @return String value stored with the key.
      * */
-    public String getEntry(String key){
+    public String getStringEntry(String key){
         return preferences.getString(key,null);
     }
+
+    /**
+     * getEntry returns an entry from the settings file.
+     * @param key key string to look up and return data from settings file.
+     * @return Int value stored with the key.
+     * */
+    public int getIntEntry(String key){
+        return preferences.getInt(key,-1);
+    }
+
     /**
      * removeEntry removes an entry from the settings file.
      * @param key string to remove from the settings file.

@@ -1,7 +1,6 @@
 package com.garden.taskgarden;
 
 import android.content.Context;
-import android.util.Log;
 
 /**
  * This Class acts as an abstraction layer between DBHandler.java and any activity that may want to
@@ -11,7 +10,9 @@ import android.util.Log;
  * */
 public class DBInterface {
 
-    String debugTag = "DBInterface";
+    static String debugTag = "DBInterface";
+    static SettingsTalker talker;
+    private static String settingsName = "numTasks";
 
 
     /**
@@ -35,8 +36,17 @@ public class DBInterface {
      *
      * */
     public static void addTask(Task task, Context context){
+        int id;
+        talker = new SettingsTalker(context);
+        id = talker.getIntEntry(settingsName);
         DBHandler dbHandler = new DBHandler(context, null, null, 1);
+        if(id == -1){
+            talker.addEntry(settingsName,1);
+            id = 1;
+        }
+        task.updateID(id);
         dbHandler.addHandler(task);
+        talker.updateEntry(settingsName,id+1);
 
     }
 
