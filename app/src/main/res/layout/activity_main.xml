@@ -94,12 +94,22 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taskList"
-        android:layout_width="378dp"
-        android:layout_height="391dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/taskId"
+        android:layout_width="370dp"
+        android:layout_height="315dp"
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/btnAddNewTask"
+        android:layout_width="114dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="28dp"
+        android:onClick="openForm"
+        android:text="add new task"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/taskList" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

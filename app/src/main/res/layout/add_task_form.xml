@@ -73,6 +73,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="124dp"
         android:text="Add Task"
+        android:onClick="addTaskForm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

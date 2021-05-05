@@ -1,5 +1,6 @@
 package com.garden.taskgarden
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -17,7 +18,6 @@ class MainActivity : AppCompatActivity() {
     var taskListGUIObject: RecyclerView? = null
     var taskId: EditText? = null
     var taskName: EditText? = null
-    var taskDescription: EditText? = null
     var adapter: RecyclerViewAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -115,38 +115,10 @@ class MainActivity : AppCompatActivity() {
         private const val debugTag = "MainActivity"
     }
 
-    fun addTaskForm(view: View?){
-        taskId = findViewById(R.id.etForm_id)
-        taskName = findViewById(R.id.etForm_Task)
-        taskDescription = findViewById(R.id.etForm_Description)
-        try {
-            //int ID = Integer.parseInt(taskId.getText().toString());
-            val title = taskName!!.text.toString()
-            val description = taskDescription!!.text.toString()
-            val task = Task()
-            //task.updateID(ID);
-            task.updateTitle(title)
-            task.updateDescription(description)
-            addTask(task, this)
-        } catch (e: NumberFormatException) {
-            Log.d(debugTag, "Got NumberFormatException while trying to add task in Main Activity!")
-        }
-        loadTasks()
-    }
+    // For some reason .java has an unknown reference, cant find anything that will get it to work
+    fun openForm(view: View?){
+        //val intent = Intent(this@MainActivity, TaskFormActivity::class.java)
+        //startActivity(intent)
 
-    fun loadTasks() {
-        try {
-            val dbHandler = DBHandler(this, null, null, 1)
-            val TaskList = dbHandler.loadHandler()
-            //taskListGUIObject.setText(TaskList.get(0).getTitle() +": "+ TaskList.get(0).getTaskDescription());
-            //setContentView(R.layout.row_layout);
-            adapter = RecyclerViewAdapter(TaskList, application)
-            taskListGUIObject!!.adapter = adapter
-            taskListGUIObject!!.layoutManager = LinearLayoutManager(this@MainActivity)
-            taskId!!.setText("")
-            taskName!!.setText("")
-        } catch (e: Exception) {
-            Log.d(debugTag, "Got unexpected Exception when trying to load tasks in Main Activity.$e")
-        }
     }
 }
