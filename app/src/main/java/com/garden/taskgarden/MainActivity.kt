@@ -117,8 +117,8 @@ class MainActivity : AppCompatActivity() {
 
     // For some reason .java has an unknown reference, cant find anything that will get it to work
     fun openForm(view: View?){
-        //val intent = Intent(this@MainActivity, TaskFormActivity::class.java)
-        //startActivity(intent)
+        val intent = Intent(this@MainActivity, TaskFormActivity::class.java)
+        startActivity(intent)
 
     }
 }
