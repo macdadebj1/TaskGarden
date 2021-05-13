@@ -20,7 +20,7 @@ class TaskFormActivity : AppCompatActivity() {
         setContentView(R.layout.add_task_form)
     }
 
-    fun addTaskForm(/*view: View?*/){
+    fun addTaskForm(view: View?){
         taskName = findViewById(R.id.etForm_Task)
         taskDescription = findViewById(R.id.etForm_Description)
         try {
