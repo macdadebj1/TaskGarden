@@ -28,6 +28,7 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {}
+
     fun loadHandler(): ArrayList<Task> {
         val taskArray = ArrayList<Task>()
         val query = "SELECT * FROM $TABLE_NAME"
@@ -119,7 +120,7 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
             args.put(COLUMN_DESCRIPTION, task.description)
             return db.update(TABLE_NAME, args, COLUMN_ID + " = " + task.iD, null) > 0
         }
-        return false;
+        return false
     }
 
     companion object {

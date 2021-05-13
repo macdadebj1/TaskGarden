@@ -7,42 +7,70 @@ import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.garden.taskgarden.DBInterface.addTask
 import com.garden.taskgarden.DBInterface.deleteTask
 import com.garden.taskgarden.DBInterface.findTask
 import com.garden.taskgarden.DBInterface.updateTask
+import com.garden.taskgarden.RecyclerView.PaddingItemDecoration
+import com.garden.taskgarden.RecyclerView.RecyclerViewAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     var settingsTalker: SettingsTalker? = null
-    var taskListGUIObject: RecyclerView? = null
+    //var taskListGUIObject: RecyclerView? = null
     var taskId: EditText? = null
     var taskName: EditText? = null
-    var adapter: RecyclerViewAdapter? = null
+
+    private lateinit var taskAdapter: RecyclerViewAdapter
+
+    //var adapter: RecyclerViewAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        taskListGUIObject = findViewById(R.id.taskList)
+        //taskListGUIObject = findViewById(R.id.taskList)
         taskId = findViewById(R.id.taskId)
         taskName = findViewById(R.id.taskName)
         //dbInterface = new DBInterface();
         settingsTalker = SettingsTalker(this)
+        initRecyclerView()
+        addData()
     }
 
-    fun loadTasks(view: View?) {
+    private fun addData(){
+        val data = loadTasks()
+        taskAdapter.submitList(data)
+    }
+
+    private fun initRecyclerView(){
+        taskList.apply{
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            val topSpacingDecoration = PaddingItemDecoration(30)
+            addItemDecoration((topSpacingDecoration))
+            taskAdapter = RecyclerViewAdapter()
+            adapter=taskAdapter
+        }
+
+
+
+
+
+    }
+
+
+
+    fun loadTasks() :ArrayList<Task>{
         try {
             val dbHandler = DBHandler(this, null, null, 1)
-            val TaskList = dbHandler.loadHandler()
-            //taskListGUIObject.setText(TaskList.get(0).getTitle() +": "+ TaskList.get(0).getTaskDescription());
-            //setContentView(R.layout.row_layout);
-            adapter = RecyclerViewAdapter(TaskList, application)
-            taskListGUIObject!!.adapter = adapter
-            taskListGUIObject!!.layoutManager = LinearLayoutManager(this@MainActivity)
-            taskId!!.setText("")
-            taskName!!.setText("")
+            return dbHandler.loadHandler()
+
+
+            //taskListGUIObject!!.layoutManager = LinearLayoutManager(this@MainActivity)
+            //taskId!!.setText("")
+            //taskName!!.setText("")
         } catch (e: Exception) {
             Log.d(debugTag, "Got unexpected Exception when trying to load tasks in Main Activity.$e")
         }
+        return ArrayList<Task>()
     }
 
     fun addTask(view: View?) {
@@ -61,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun findTask(view: View?): Task? {
+    fun findTask(view: View): Task? {
         try {
             val ID: Int = Integer.parseInt(taskId!!.text.toString())
             Log.d(debugTag, "Value of ID int: " + taskId!!.text.toString())

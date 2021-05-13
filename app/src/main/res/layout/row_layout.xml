@@ -1,38 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="2dp"
+    app:cardPreventCornerOverlap="true"
+    >
 
-    <TextView
-        android:id="@+id/Tasktitle"
-        android:layout_width="300dp"
-        android:layout_height="55dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="78dp"
-        android:text=""
-        android:textColor="#000"
-        android:textSize="50sp" />
 
-    <TextView
-        android:id="@+id/Taskdescription"
-        android:layout_width="250dp"
-        android:layout_height="55dp"
-        android:layout_below="@+id/Tasktitle"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="376dp"
+        android:layout_height="252dp"
+        android:layout_gravity="center_horizontal">
 
-        android:layout_alignEnd="@+id/Tasktitle"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="560dp"
-        android:text=""
-        android:textColor="#000"
-        android:textSize="30sp" />
+        <TextView
+            android:id="@+id/Taskdescription"
+            android:layout_width="360dp"
+            android:layout_height="75dp"
+            android:layout_below="@+id/Tasktitle"
 
-</RelativeLayout>
+            android:layout_alignEnd="@+id/Tasktitle"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:text=""
+            android:textColor="#000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.432"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Tasktitle"
+            app:layout_constraintVertical_bias="0.158" />
+
+        <TextView
+            android:id="@+id/Tasktitle"
+            android:layout_width="360dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="16dp"
+            android:text=""
+            android:textColor="#000"
+            android:textSize="35sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.485"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/timeToCompleteBy"
+            android:layout_width="108dp"
+            android:layout_height="30dp"
+            android:autofillHints="Time to complete task by"
+            android:inputType="number"
+            android:text=""
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.026"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Taskdescription"
+            app:layout_constraintVertical_bias="0.29" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
