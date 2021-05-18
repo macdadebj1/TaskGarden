@@ -73,6 +73,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
             descripton.text = task.description
             //time.setText(task.timeToCompletedBy)
         }
+
     }
 
 

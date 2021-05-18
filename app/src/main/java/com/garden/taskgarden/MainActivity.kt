@@ -50,13 +50,7 @@ class MainActivity : AppCompatActivity() {
             adapter=taskAdapter
         }
 
-
-
-
-
     }
-
-
 
     fun loadTasks() :ArrayList<Task>{
         try {

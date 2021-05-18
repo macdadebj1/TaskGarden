@@ -11,7 +11,7 @@ import java.util.*
 
 /**
  * DO NOT INTERFACE WITH THIS CLASS DIRECTLY!!!
- * IF YOU WANT TO TALK TO THE DATABASE, PLEASE TALK TO DBInterface.java
+ * IF YOU WANT TO TALK TO THE DATABASE, PLEASE TALK TO DBInterface
  *
  * @author Blake MacDade
  */

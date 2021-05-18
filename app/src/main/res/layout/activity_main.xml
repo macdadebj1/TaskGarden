@@ -6,18 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/buttonFind"
-        android:layout_width="161dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="24dp"
-        android:onClick="findTask"
-        android:text="@string/find"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskId" />
-
     <!--<Button
         android:id="@+id/buttonLoad"
         android:layout_width="114dp"
@@ -32,94 +20,92 @@
 
     <Button
         android:id="@+id/buttonUpdate"
-        android:layout_width="112dp"
-        android:layout_height="63dp"
+        android:layout_width="300px"
+        android:layout_height="55dp"
+        android:layout_marginTop="68dp"
         android:onClick="updateTask"
         android:text="@string/update"
-        app:layout_constraintBottom_toTopOf="@+id/buttonFind"
-        app:layout_constraintEnd_toStartOf="@+id/buttonAdd"
-        app:layout_constraintStart_toEndOf="@+id/buttonFind"
-        app:layout_constraintTop_toBottomOf="@+id/taskId" />
+        app:layout_constraintBottom_toTopOf="@id/btnAddNewTask"
+        app:layout_constraintLeft_toRightOf="@id/buttonFind"
+        app:layout_constraintRight_toLeftOf="@id/buttonDelete"
+        app:layout_constraintTop_toBottomOf="@+id/taskList" />
 
     <Button
-        android:id="@+id/buttonAdd"
-        android:layout_width="161dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:onClick="addTask"
-        android:text="@string/add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonFind"
-        app:layout_constraintTop_toBottomOf="@+id/taskName" />
+        android:id="@+id/buttonFind"
+        android:layout_width="300px"
+        android:layout_height="55dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="findTask"
+        android:text="@string/find"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddNewTask"
+        app:layout_constraintEnd_toStartOf="@+id/buttonUpdate"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskId"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/buttonDelete"
-        android:layout_width="109dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="300px"
+        android:layout_height="55dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="13dp"
         android:onClick="deleteTask"
         android:text="@string/delete"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAdd"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddNewTask"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toEndOf="@+id/buttonUpdate"
         app:layout_constraintTop_toBottomOf="@+id/taskName" />
 
     <EditText
         android:id="@+id/taskId"
-        android:layout_width="171dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="436dp"
-        android:layout_marginBottom="84dp"
+        android:layout_width="170dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:inputType="numberDecimal"
         android:text="@string/id"
-        app:layout_constraintBottom_toTopOf="@+id/buttonFind"
-        app:layout_constraintEnd_toStartOf="@+id/taskName"
-        app:layout_constraintHorizontal_bias="0.254"
+        app:layout_constraintBottom_toTopOf="@id/buttonFind"
+        app:layout_constraintRight_toLeftOf="@id/taskName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/taskList" />
 
     <EditText
         android:id="@+id/taskName"
-        android:layout_width="171dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="436dp"
+        android:layout_width="170dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="89dp"
         android:inputType="text"
         android:text="@string/title"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAdd"
+        app:layout_constraintBottom_toTopOf="@id/buttonDelete"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintLeft_toRightOf="@id/taskId"
+        app:layout_constraintTop_toBottomOf="@+id/taskList" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taskList"
-        android:layout_width="390dp"
-        android:layout_height="410dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="386dp"
+        android:layout_height="510dp"
         android:foregroundGravity="center_horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/buttonUpdate"
+        app:layout_constraintBottom_toTopOf="@id/btnAddNewTask"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.104" />
 
     <Button
         android:id="@+id/btnAddNewTask"
-        android:layout_width="114dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="360dp"
+        android:layout_height="71dp"
         android:onClick="openForm"
         android:text="add new task"
-        app:layout_constraintBottom_toTopOf="@+id/buttonFind"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskList"
-        app:layout_constraintVertical_bias="0.949" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonUpdate" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
