@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.garden.taskgarden.R
 import com.garden.taskgarden.Task
-import kotlinx.android.synthetic.main.row_layout.view.*
+//import kotlinx.android.synthetic.main.row_layout.view.*
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import java.util.*
 
@@ -66,12 +66,12 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     class TaskViewHolder constructor(itemView: View):RecyclerView.ViewHolder(itemView){
         val title = itemView.textView
-        var descripton = itemView.textView2
+        var description = itemView.textView2
         // var time = itemView.timeToCompleteBy
 
         fun bind(task: Task){
             title.text = task.title
-            descripton.text = task.description
+            description.text = task.description
             //time.setText(task.timeToCompletedBy)
         }
 

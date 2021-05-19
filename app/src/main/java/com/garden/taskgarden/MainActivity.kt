@@ -16,7 +16,7 @@ import com.garden.taskgarden.RecyclerView.RecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    var settingsTalker: SettingsTalker? = null
+    private var settingsTalker: SettingsTalker? = null
     //var taskListGUIObject: RecyclerView? = null
     var taskId: EditText? = null
     var taskName: EditText? = null
@@ -34,10 +34,10 @@ class MainActivity : AppCompatActivity() {
         //dbInterface = new DBInterface();
         settingsTalker = SettingsTalker(this)
         initRecyclerView()
-        addData()
+        loadData()
     }
 
-    private fun addData(){
+    private fun loadData(){
         val data = loadTasks()
         taskAdapter.submitList(data)
     }
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             Log.d(debugTag, "Got unexpected Exception when trying to load tasks in Main Activity.$e")
         }
-        return ArrayList<Task>()
+        return ArrayList()
     }
 
     fun addTask(view: View?) {
@@ -86,14 +86,11 @@ class MainActivity : AppCompatActivity() {
 
     fun findTask(view: View): Task? {
         try {
-            val ID: Int = Integer.parseInt(taskId!!.text.toString())
+            val id: Int = Integer.parseInt(taskId!!.text.toString())
             Log.d(debugTag, "Value of ID int: " + taskId!!.text.toString())
-            val task = findTask(ID, this)
+            val task = findTask(id, this)
             taskId!!.setText("")
             taskName!!.setText("")
-            if (task == null) {
-                throw NullTaskException("This task returned a null in findTask method in MainActivity!")
-            }
             return task
         } catch (e: NumberFormatException) {
             Log.d(debugTag, "Got NumberFormatException while trying to find task in Main Activity!")
@@ -103,10 +100,11 @@ class MainActivity : AppCompatActivity() {
 
     fun deleteTask(view: View?) {
         try {
-            val ID: Int = Integer.parseInt(taskId!!.text.toString())
-            if (deleteTask(ID, this)) {
+            val id: Int = Integer.parseInt(taskId!!.text.toString())
+            if (deleteTask(id, this)) {
                 taskId!!.setText("")
                 taskName!!.setText("")
+                loadData()
                 //taskListGUIObject.setText("Record Deleted");
             } else {
                 taskId!!.setText("No Match Found")

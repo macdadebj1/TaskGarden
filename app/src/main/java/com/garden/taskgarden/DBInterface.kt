@@ -10,7 +10,7 @@ import android.content.Context
  */
 object DBInterface {
     var debugTag = "DBInterface"
-    var talker: SettingsTalker? = null
+    private var talker: SettingsTalker? = null
     private const val settingsName = "numTasks"
 
     /**

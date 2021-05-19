@@ -22,7 +22,7 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
                 COLUMN_NAME + " TEXT, " +
                 COLUMN_DESCRIPTION + " TEXT, " +
                 COLUMN_COMPLETED + " INTEGER, " +
-                COLUMN_COMPLETEDBY + " DATETIME " +
+                COLUMN_COMPLETED_BY + " DATETIME " +
                 ")"
         db.execSQL(CREATE_TABLE)
     }
@@ -53,7 +53,7 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
             values.put(COLUMN_ID, task.iD)
             values.put(COLUMN_NAME, task.title)
             values.put(COLUMN_COMPLETED, task.completed)
-            values.put(COLUMN_COMPLETEDBY, task.timeToCompletedBy)
+            values.put(COLUMN_COMPLETED_BY, task.timeToCompletedBy)
             values.put(COLUMN_DESCRIPTION, task.description)
             val db = this.writableDatabase
             db.insert(TABLE_NAME, null, values)
@@ -103,7 +103,7 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
     }
 
     /**
-     * updateTask updates a task record in the databse
+     * updateTask updates a task record in the database
      *
      * @param task the updated task to pass to the database.
      *
@@ -116,7 +116,7 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
         if(task!= null) {
             args.put(COLUMN_NAME, task.title)
             args.put(COLUMN_COMPLETED, task.completed)
-            args.put(COLUMN_COMPLETEDBY, task.timeToCompletedBy)
+            args.put(COLUMN_COMPLETED_BY, task.timeToCompletedBy)
             args.put(COLUMN_DESCRIPTION, task.description)
             return db.update(TABLE_NAME, args, COLUMN_ID + " = " + task.iD, null) > 0
         }
@@ -131,7 +131,7 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
         const val COLUMN_NAME = "TaskTitle"
         const val COLUMN_DESCRIPTION = "TaskDescription"
         const val COLUMN_COMPLETED = "Completed"
-        const val COLUMN_COMPLETEDBY = "CompletedBy"
+        const val COLUMN_COMPLETED_BY = "CompletedBy"
         const val debugTag = "DBHandler"
     }
 }
