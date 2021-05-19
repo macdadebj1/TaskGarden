@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.garden.taskgarden.R
 import com.garden.taskgarden.Task
 import kotlinx.android.synthetic.main.row_layout.view.*
+import kotlinx.android.synthetic.main.task_card_view.view.*
 import java.util.*
 
 //class RecyclerViewAdapter(private val taskList: ArrayList<Task>, application: Application) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
@@ -18,7 +19,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return TaskViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.row_layout,parent,false)
+            LayoutInflater.from(parent.context).inflate(R.layout.task_card_view,parent,false)
         )
         /*context = parent.context
         val lInflater = LayoutInflater.from(context)
@@ -64,9 +65,9 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     }*/
 
     class TaskViewHolder constructor(itemView: View):RecyclerView.ViewHolder(itemView){
-        val title = itemView.Tasktitle
-        var descripton = itemView.Taskdescription
-        var time = itemView.timeToCompleteBy
+        val title = itemView.textView
+        var descripton = itemView.textView2
+        // var time = itemView.timeToCompleteBy
 
         fun bind(task: Task){
             title.text = task.title

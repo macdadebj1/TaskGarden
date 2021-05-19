@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     var taskId: EditText? = null
     var taskName: EditText? = null
 
+    // nullable type
     private lateinit var taskAdapter: RecyclerViewAdapter
 
     //var adapter: RecyclerViewAdapter? = null
