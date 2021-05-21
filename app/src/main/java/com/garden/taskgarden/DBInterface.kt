@@ -45,7 +45,7 @@ object DBInterface {
             talker!!.addEntry(settingsName, 1)
             id = 1
         }
-        task.updateID(id)
+        task.setID(id)
         dbHandler.addHandler(task)
         talker!!.updateEntry(settingsName, id + 1)
     }

@@ -72,7 +72,7 @@ class Task {
      *
      * @param ID the new ID to give the object.
      */
-    fun updateID(ID: Int) {
+    fun setID(ID: Int) {
         iD = ID
     }
 
@@ -81,7 +81,7 @@ class Task {
      *
      * @param newTitle the new title to give the object.
      */
-    fun updateTitle(newTitle: String?) {
+    fun setTitle(newTitle: String?) {
         title = newTitle
     }
 
@@ -90,7 +90,7 @@ class Task {
      *
      * @param newDescription the new description to give the object.
      */
-    fun updateDescription(newDescription: String?) {
+    fun setDescription(newDescription: String?) {
         description = newDescription
     }
 
@@ -99,7 +99,7 @@ class Task {
      *
      * @param state the new completed state to give the object.
      */
-    fun updateCompleted(state: Boolean) {
+    fun setCompleted(state: Boolean) {
         completed = state
     }
 
@@ -108,7 +108,7 @@ class Task {
      *
      * @param time the new time to complete by to give the object.
      */
-    fun updateCompletedBy(time: Int) {
+    fun setCompletedBy(time: Int) {
         timeToCompletedBy = time
     }
 

@@ -70,15 +70,15 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
         val task = Task()
         if (cursor.moveToFirst()) {
             cursor.moveToFirst()
-            task.updateID(cursor.getInt(0))
-            task.updateTitle(cursor.getString(1))
-            task.updateDescription(cursor.getString(2))
+            task.setID(cursor.getInt(0))
+            task.setTitle(cursor.getString(1))
+            task.setDescription(cursor.getString(2))
             when (cursor.getInt(3)) {
-                1 -> task.updateCompleted(true)
-                0 -> task.updateCompleted(false)
-                else -> task.updateCompleted(false)
+                1 -> task.setCompleted(true)
+                0 -> task.setCompleted(false)
+                else -> task.setCompleted(false)
             }
-            task.updateCompletedBy(cursor.getInt(4))
+            task.setCompletedBy(cursor.getInt(4))
         }
         cursor.close()
         db.close()
@@ -92,7 +92,7 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
         val cursor = db.rawQuery(query, null)
         val task = Task()
         if (cursor.moveToFirst()) {
-            task.updateID(cursor.getInt(0))
+            task.setID(cursor.getInt(0))
             db.delete(TABLE_NAME, "$COLUMN_ID=?", arrayOf(java.lang.String.valueOf(task.iD)))
             // for the love of GOD, please revisit this steaming pile of crap, took from online tutorial and just want it to work :)
             cursor.close()

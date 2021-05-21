@@ -76,8 +76,8 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
         try {
             val title = taskName!!.text.toString()
             val task = Task()
-            task.updateTitle(title)
-            task.updateDescription("TestDescription!!!")
+            task.setTitle(title)
+            task.setDescription("TestDescription!!!")
             addTask(task, this)
             taskId!!.setText("")
             taskName!!.setText("")
@@ -122,8 +122,8 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
         val task = Task()
 
         try {
-            task.updateTitle(taskName!!.text.toString())
-            task.updateID(Integer.parseInt(taskId!!.text.toString()))
+            task.setTitle(taskName!!.text.toString())
+            task.setID(Integer.parseInt(taskId!!.text.toString()))
             if (updateTask(task, this)) {
                 taskId!!.setText("")
                 taskName!!.setText("")

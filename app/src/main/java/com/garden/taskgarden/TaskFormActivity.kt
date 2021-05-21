@@ -6,9 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
-import com.garden.taskgarden.DBInterface
-import com.garden.taskgarden.R
-import com.garden.taskgarden.Task
 
 class TaskFormActivity : AppCompatActivity() {
     var taskName: EditText? = null
@@ -27,8 +24,8 @@ class TaskFormActivity : AppCompatActivity() {
         taskToCompleteBy = findViewById(R.id.etForm_CompletedBy)
         try {
             val task = Task()
-            task.updateTitle(taskName!!.text.toString())
-            task.updateDescription(taskDescription!!.text.toString())
+            task.setTitle(taskName!!.text.toString())
+            task.setDescription(taskDescription!!.text.toString())
             //task.updateCompletedBy(Integer.parseInt(taskToCompleteBy!!.text.toString()))
 
             DBInterface.addTask(task, this)
