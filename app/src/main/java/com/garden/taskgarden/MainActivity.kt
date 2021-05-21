@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
             //taskId!!.setText("")
             //taskName!!.setText("")
         } catch (e: Exception) {
-            Log.d(debugTag, "Got unexpected Exception when trying to load tasks in Main Activity.$e")
+            Log.d(debugTag, "Got $e when trying to load tasks in Main Activity.$e")
         }
         return ArrayList()
     }
@@ -79,8 +79,8 @@ class MainActivity : AppCompatActivity() {
             addTask(task, this)
             taskId!!.setText("")
             taskName!!.setText("")
-        } catch (e: NumberFormatException) {
-            Log.d(debugTag, "Got NumberFormatException while trying to add task in Main Activity!")
+        } catch (e: Exception) {
+            Log.d(debugTag, "Got $e while trying to add task in Main Activity!")
         }
     }
 
@@ -92,8 +92,8 @@ class MainActivity : AppCompatActivity() {
             taskId!!.setText("")
             taskName!!.setText("")
             return task
-        } catch (e: NumberFormatException) {
-            Log.d(debugTag, "Got NumberFormatException while trying to find task in Main Activity!")
+        } catch (e: Exception) {
+            Log.d(debugTag, "Got $e while trying to find task in Main Activity!")
         }
         return null
     }
@@ -109,16 +109,17 @@ class MainActivity : AppCompatActivity() {
             } else {
                 taskId!!.setText("No Match Found")
             }
-        } catch (e: NumberFormatException) {
-            Log.d(debugTag, "Got NumberFormatException while trying to delete task in Main Activity!")
+        } catch (e: Exception) {
+            Log.d(debugTag, "Got $e while trying to delete task in Main Activity!")
         }
     }
 
     fun updateTask(view: View?) {
         val task = Task()
-        task.updateTitle(taskName!!.text.toString())
-        task.updateID(Integer.parseInt(taskId!!.text.toString()))
+
         try {
+            task.updateTitle(taskName!!.text.toString())
+            task.updateID(Integer.parseInt(taskId!!.text.toString()))
             if (updateTask(task, this)) {
                 taskId!!.setText("")
                 taskName!!.setText("")
@@ -126,8 +127,8 @@ class MainActivity : AppCompatActivity() {
             } else {
                 taskId!!.setText("No Match Found")
             }
-        } catch (e: NumberFormatException) {
-            Log.d(debugTag, "Got NumberFormatException while trying to update task in Main Activity!")
+        } catch (e: Exception) {
+            Log.d(debugTag, "Got $e while trying to update task in Main Activity!")
         }
     }
 
