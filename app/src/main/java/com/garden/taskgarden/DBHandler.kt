@@ -35,7 +35,7 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
         val db = this.writableDatabase
         val cursor = db.rawQuery(query, null)
         while (cursor.moveToNext()) {
-            taskArray.add(Task(cursor.getString(1), cursor.getString(2), cursor.getInt(4)))
+            taskArray.add(Task(cursor.getInt(0),cursor.getString(1), cursor.getString(2), cursor.getInt(4)))
         }
         cursor.close()
         db.close()
