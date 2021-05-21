@@ -11,26 +11,12 @@
     tools:context=".TaskFormActivity"
     >
 
-    <EditText
-        android:id="@+id/etForm_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:hint="@string/id"
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/etForm_Task"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.613" />
 
     <EditText
         android:id="@+id/etForm_Task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="32dp"
         android:background="@android:color/white"
         android:hint="Task"
         android:inputType="textPersonName"
@@ -44,7 +30,7 @@
         android:id="@+id/etForm_Description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="36dp"
         android:background="@android:color/white"
         android:hint="Description"
         android:inputType="textPersonName"
@@ -57,14 +43,14 @@
         android:id="@+id/etForm_CompletedBy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="88dp"
         android:background="@android:color/white"
         android:hint="Time to be completed"
         android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/btnForm_add"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -88,9 +74,11 @@
         android:textColor="@color/black"
         android:textSize="32sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/etForm_Task"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.131" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
