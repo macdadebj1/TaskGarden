@@ -1,5 +1,6 @@
 package com.garden.taskgarden
 
+//refactor to deal with all imports of DBInterface!
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,14 +9,14 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.garden.taskgarden.DBInterface.addTask
-import com.garden.taskgarden.DBInterface.deleteTask
 import com.garden.taskgarden.DBInterface.findTask
+import com.garden.taskgarden.DBInterface.removeTask
 import com.garden.taskgarden.DBInterface.updateTask
 import com.garden.taskgarden.RecyclerView.PaddingItemDecoration
 import com.garden.taskgarden.RecyclerView.RecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListener {
     private var settingsTalker: SettingsTalker? = null
     var taskId: EditText? = null
     var taskName: EditText? = null
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         settingsTalker = SettingsTalker(this)
         initRecyclerView()
         loadData()
+
     }
 
     private fun loadData(){
@@ -45,10 +47,14 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             val topSpacingDecoration = PaddingItemDecoration(30)
             addItemDecoration((topSpacingDecoration))
-            taskAdapter = RecyclerViewAdapter()
+            taskAdapter = RecyclerViewAdapter(this@MainActivity)
             adapter=taskAdapter
         }
 
+    }
+
+    override fun onItemClick(id: Int) {
+        deleteTask(id)
     }
 
     fun updateRecyclerView(){
@@ -95,10 +101,11 @@ class MainActivity : AppCompatActivity() {
         return null
     }
 
-    fun deleteTask(view: View?) {
+    //fun deleteTask(view: View?) {
+    fun deleteTask(id: Int) {
         try {
-            val id: Int = Integer.parseInt(taskId!!.text.toString())
-            if (deleteTask(id, this)) {
+            //val id: Int = Integer.parseInt(taskId!!.text.toString())
+            if (removeTask(id, this)) {
                 taskId!!.setText("")
                 taskName!!.setText("")
 
