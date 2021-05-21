@@ -1,9 +1,12 @@
 package com.garden.taskgarden.RecyclerView
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.garden.taskgarden.DBInterface
+import com.garden.taskgarden.MainActivity
 import com.garden.taskgarden.R
 import com.garden.taskgarden.Task
 //import kotlinx.android.synthetic.main.row_layout.view.*
@@ -11,7 +14,7 @@ import kotlinx.android.synthetic.main.task_card_view.view.*
 import java.util.*
 
 //class RecyclerViewAdapter(private val taskList: ArrayList<Task>, application: Application) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
-class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class RecyclerViewAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     //var context: Context
     //var listener: View.OnClickListener? = null
 
@@ -64,17 +67,36 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         context = application
     }*/
 
-    class TaskViewHolder constructor(itemView: View):RecyclerView.ViewHolder(itemView){
+    inner class TaskViewHolder constructor(itemView: View):RecyclerView.ViewHolder(itemView),
+        View.OnClickListener{
+
         val title = itemView.textView
         var description = itemView.textView2
         // var time = itemView.timeToCompleteBy
+        var id = 0;
+        val deleteButton = itemView.image_delete
 
         fun bind(task: Task){
             title.text = task.title
             description.text = task.description
+            id = task.iD;
+            Log.d("RecyclerViewAdapter","BIND TASK! $id")
             //time.setText(task.timeToCompletedBy)
         }
 
+        init {
+            deleteButton.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            Log.d("RecyclerViewAdapter",id.toString())
+            listener.onItemClick(id)
+        }
+
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(id: Int)
     }
 
 
