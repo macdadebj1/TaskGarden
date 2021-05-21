@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private var settingsTalker: SettingsTalker? = null
-    //var taskListGUIObject: RecyclerView? = null
     var taskId: EditText? = null
     var taskName: EditText? = null
 
@@ -28,7 +27,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //taskListGUIObject = findViewById(R.id.taskList)
         taskId = findViewById(R.id.taskId)
         taskName = findViewById(R.id.taskName)
         //dbInterface = new DBInterface();
@@ -53,15 +51,15 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun updateRecyclerView(){
+        loadData()
+        taskAdapter.notifyDataSetChanged()
+    }
+
     fun loadTasks() :ArrayList<Task>{
         try {
             val dbHandler = DBHandler(this, null, null, 1)
             return dbHandler.loadHandler()
-
-
-            //taskListGUIObject!!.layoutManager = LinearLayoutManager(this@MainActivity)
-            //taskId!!.setText("")
-            //taskName!!.setText("")
         } catch (e: Exception) {
             Log.d(debugTag, "Got $e when trying to load tasks in Main Activity.$e")
         }
@@ -70,15 +68,14 @@ class MainActivity : AppCompatActivity() {
 
     fun addTask(view: View?) {
         try {
-            //int ID = Integer.parseInt(taskId.getText().toString());
             val title = taskName!!.text.toString()
             val task = Task()
-            //task.updateID(ID);
             task.updateTitle(title)
             task.updateDescription("TestDescription!!!")
             addTask(task, this)
             taskId!!.setText("")
             taskName!!.setText("")
+            updateRecyclerView()
         } catch (e: Exception) {
             Log.d(debugTag, "Got $e while trying to add task in Main Activity!")
         }
@@ -104,8 +101,8 @@ class MainActivity : AppCompatActivity() {
             if (deleteTask(id, this)) {
                 taskId!!.setText("")
                 taskName!!.setText("")
-                loadData()
-                //taskListGUIObject.setText("Record Deleted");
+
+                updateRecyclerView()
             } else {
                 taskId!!.setText("No Match Found")
             }
@@ -123,7 +120,7 @@ class MainActivity : AppCompatActivity() {
             if (updateTask(task, this)) {
                 taskId!!.setText("")
                 taskName!!.setText("")
-                //taskListGUIObject.setText("Record Updated");
+                updateRecyclerView()
             } else {
                 taskId!!.setText("No Match Found")
             }
@@ -137,7 +134,6 @@ class MainActivity : AppCompatActivity() {
         private const val debugTag = "MainActivity"
     }
 
-    // For some reason .java has an unknown reference, cant find anything that will get it to work
     fun openForm(view: View?){
         val intent = Intent(this@MainActivity, TaskFormActivity::class.java)
         startActivity(intent)
