@@ -59,7 +59,7 @@ object DBInterface {
      * @return returns the state of the deletion, true if successful.
      */
 
-    fun deleteTask(ID: Int, context: Context?): Boolean {
+    fun removeTask(ID: Int, context: Context?): Boolean {
         val dbHandler = DBHandler(context, null, null, 1)
         return dbHandler.deleteHandler(ID)
     }
