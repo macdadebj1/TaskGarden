@@ -16,7 +16,7 @@
         android:id="@+id/etForm_Task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="40dp"
         android:background="@android:color/white"
         android:hint="Task"
         android:inputType="textPersonName"
@@ -30,27 +30,13 @@
         android:id="@+id/etForm_Description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="40dp"
         android:background="@android:color/white"
         android:hint="Description"
         android:inputType="textPersonName"
         android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/etForm_CompletedBy"
+        app:layout_constraintBottom_toTopOf="@+id/task_time"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/etForm_CompletedBy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="88dp"
-        android:background="@android:color/white"
-        android:hint="Time to be completed"
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnForm_add"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -79,6 +65,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.131" />
+
+    <ImageView
+        android:id="@+id/task_time"
+        android:layout_width="77dp"
+        android:layout_height="72dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/ic_addtime"
+        app:layout_constraintBottom_toTopOf="@+id/btnForm_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

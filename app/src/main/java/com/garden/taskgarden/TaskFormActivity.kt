@@ -1,27 +1,62 @@
 package com.garden.taskgarden
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.TimePicker
+import kotlinx.android.synthetic.main.add_task_form.*
+import java.util.*
 
-class TaskFormActivity : AppCompatActivity() {
+class TaskFormActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     var taskName: EditText? = null
     var taskDescription: EditText? = null
-    var taskToCompleteBy: EditText? = null
     private val debugTag = "TaskFormActivity"
+
+    var day = 0
+    var month = 0
+    var year = 0
+    var hour = 0
+    var minute = 0
+
+    var savedDay = 0
+    var savedMonth = 0
+    var savedYear = 0
+    var savedHour = 0
+    var savedMinute = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_task_form)
+
+        pickDate()
+    }
+
+    private fun getDateTimeCalendar() {
+        val cal : Calendar = Calendar.getInstance()
+        day = cal.get(Calendar.DAY_OF_MONTH)
+        month = cal.get(Calendar.MONTH)
+        year = cal.get(Calendar.YEAR)
+        hour = cal.get(Calendar.HOUR)
+        minute = cal.get(Calendar.MINUTE)
+    }
+
+    private fun pickDate() {
+
+        task_time.setOnClickListener {
+            getDateTimeCalendar()
+            DatePickerDialog(this, this, year, month, day).show()
+        }
     }
 
     fun addTaskForm(view: View?){
         taskName = findViewById(R.id.etForm_Task)
         taskDescription = findViewById(R.id.etForm_Description)
-        taskToCompleteBy = findViewById(R.id.etForm_CompletedBy)
         try {
             val task = Task()
             task.setTitle(taskName!!.text.toString())
@@ -34,5 +69,21 @@ class TaskFormActivity : AppCompatActivity() {
         } catch (e: Exception) {
             Log.d(debugTag, "Got $e while trying to add task in TaskFormActivity!")
         }
+    }
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        savedDay = dayOfMonth
+        savedMonth = month
+        savedYear = year
+        getDateTimeCalendar()
+
+        TimePickerDialog(this, this, hour, minute, true).show()
+    }
+
+    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+        savedHour = hourOfDay
+        savedMinute = minute
+
+        //task_time = "$savedDay-$savedMonth-$savedYear\n Hour: $savedHour Minute: "
     }
 }
