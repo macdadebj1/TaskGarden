@@ -11,6 +11,7 @@ import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TimePicker
 import kotlinx.android.synthetic.main.add_task_form.*
+import kotlinx.android.synthetic.main.task_card_view.*
 import java.util.*
 
 class TaskFormActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
@@ -84,6 +85,6 @@ class TaskFormActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
         savedHour = hourOfDay
         savedMinute = minute
 
-        //task_time = "$savedDay-$savedMonth-$savedYear\n Hour: $savedHour Minute: "
+        time_completed.text = "$savedDay-$savedMonth-$savedYear\n Hour: $savedHour Minute: "
     }
 }

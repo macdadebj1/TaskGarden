@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="4dp"
     app:cardBackgroundColor="@android:color/white"
-    android:background="@android:color/holo_blue_light"
-    >
+    android:background="@android:color/holo_blue_light">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -37,6 +37,15 @@
             android:layout_marginTop="-3dp"
             android:text="Line 2"
             android:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/time_completed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView"
+            android:layout_marginStart="175dp"
+            tools:text="@tools:sample/date/ddmmyy" />
 
         <ImageView
             android:id="@+id/image_delete"
