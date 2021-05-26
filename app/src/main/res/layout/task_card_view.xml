@@ -49,12 +49,20 @@
 
         <ImageView
             android:id="@+id/image_delete"
-            android:onClick="deleteTask"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_delete"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true" />
+
+        <ImageView
+            android:id="@+id/image_complete"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignLeft="@id/image_delete"
+            android:layout_marginLeft="-52dp"
+            android:src="@drawable/ic_finished_task" />
+
 
     </RelativeLayout>
 
