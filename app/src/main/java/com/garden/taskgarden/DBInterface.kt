@@ -65,7 +65,7 @@ object DBInterface {
     }
 
     /**
-     * updateTask is a simple method with no error checking, deletes a task from the database;
+     * updateTask is a simple method with no error checking, updates a task in the database;
      *
      * @param task The updated task object.
      * @param context Application Context.
