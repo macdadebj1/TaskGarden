@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.garden.taskgarden.DBInterface.addTask
@@ -15,6 +16,7 @@ import com.garden.taskgarden.DBInterface.updateTask
 import com.garden.taskgarden.RecyclerView.PaddingItemDecoration
 import com.garden.taskgarden.RecyclerView.RecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import java.security.KeyStore
 
 class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListener {
     private var settingsTalker: SettingsTalker? = null
@@ -51,6 +53,10 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
             adapter=taskAdapter
         }
 
+    }
+
+    override fun onCompletedClick(id: Int) {
+        completedTask(id)
     }
 
     override fun onItemClick(id: Int) {
@@ -144,6 +150,22 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
     fun openForm(view: View?){
         val intent = Intent(this@MainActivity, TaskFormActivity::class.java)
         startActivity(intent)
+    }
+
+    fun completedTask(id: Int) {
+         var task = Task()
+         try {
+             //update task value to true in database
+             task = findTask(id, this)
+             task!!.setCompleted(true)
+             updateTask(task, this)
+
+             //update recyclerview
+
+         } catch (e: Exception) {
+             Log.d(debugTag, "Got $e while trying to complete task in Main Activity!")
+         }
+
 
     }
 }
