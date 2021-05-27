@@ -155,12 +155,14 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
     fun completedTask(id: Int) {
          var task = Task()
          try {
-             //update task value to true in database
+             // get the task object
              task = findTask(id, this)
-             task!!.setCompleted(true)
+             // change the task completed value to true
+             task.setCompleted(true)
+             // update the task
              updateTask(task, this)
-
              //update recyclerview
+             updateRecyclerView()
 
          } catch (e: Exception) {
              Log.d(debugTag, "Got $e while trying to complete task in Main Activity!")
