@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'org.jetbrains.dokka'
 }
 apply plugin: 'kotlin-android'
 apply plugin: 'com.android.application'
