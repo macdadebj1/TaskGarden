@@ -182,7 +182,6 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
         // get the task object
         task = findTask(id, this)
 
-        updateTask(task, this)
         val popoutView = LayoutInflater.from(this).inflate(R.layout.edit_popout, null)
         val buildPopout = AlertDialog.Builder(this).setView(popoutView).setTitle("Edit Task")
         val showPopout = buildPopout.show()
