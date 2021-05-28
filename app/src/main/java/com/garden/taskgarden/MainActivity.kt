@@ -152,11 +152,16 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
 
     companion object {
         //DBInterface dbInterface;
-        private const val debugTag = "MainActivity"
+        const val debugTag = "MainActivity"
     }
 
     fun openForm(view: View?){
         val intent = Intent(this@MainActivity, TaskFormActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun openCompletedTasks(view: View?){
+        val intent = Intent(this@MainActivity, CompletedTasksActivity::class.java)
         startActivity(intent)
     }
 
