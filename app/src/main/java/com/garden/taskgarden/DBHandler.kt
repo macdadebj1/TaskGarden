@@ -29,6 +29,7 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {}
 
+    // loadHander for loading uncompleted tasks
     fun loadHandler(): ArrayList<Task> {
         val taskArray = ArrayList<Task>()
         val query = "SELECT * FROM $TABLE_NAME"
@@ -36,6 +37,22 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
         val cursor = db.rawQuery(query, null)
         while (cursor.moveToNext()) {
             if (cursor.getInt(3) == 0) {
+                taskArray.add(Task(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getInt(4)))
+            }
+        }
+        cursor.close()
+        db.close()
+        return taskArray
+    }
+
+    // loadHander for loading uncompleted tasks
+    fun loadCompletedHandler(): ArrayList<Task> {
+        val taskArray = ArrayList<Task>()
+        val query = "SELECT * FROM $TABLE_NAME"
+        val db = this.writableDatabase
+        val cursor = db.rawQuery(query, null)
+        while (cursor.moveToNext()) {
+            if (cursor.getInt(3) == 1) {
                 taskArray.add(Task(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getInt(4)))
             }
         }
