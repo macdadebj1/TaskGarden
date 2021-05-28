@@ -76,6 +76,7 @@ class RecyclerViewAdapter(private val listener: OnItemClickListener) : RecyclerV
         var id = 0;
         val deleteButton = itemView.image_delete
         val completedButton = itemView.image_complete
+        val editButton = itemView.textView
 
         fun bind(task: Task){
             title.text = task.title
@@ -88,6 +89,7 @@ class RecyclerViewAdapter(private val listener: OnItemClickListener) : RecyclerV
         init {
             deleteButton.setOnClickListener(this)
             completedButton.setOnClickListener(this)
+            editButton.setOnClickListener(this)
         }
 
         override fun onClick(v: View?) {
@@ -96,6 +98,7 @@ class RecyclerViewAdapter(private val listener: OnItemClickListener) : RecyclerV
             when(v?.getId()) {
                 R.id.image_delete -> listener.onItemClick(id)
                 R.id.image_complete -> listener.onCompletedClick(id)
+                R.id.textView -> listener.onEditClick(id)
             }
         }
 
@@ -104,6 +107,7 @@ class RecyclerViewAdapter(private val listener: OnItemClickListener) : RecyclerV
     interface OnItemClickListener {
         fun onItemClick(id: Int)
         fun onCompletedClick(id: Int)
+        fun onEditClick(id: Int)
     }
 
 
