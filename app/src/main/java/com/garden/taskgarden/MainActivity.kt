@@ -4,9 +4,11 @@ package com.garden.taskgarden
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.garden.taskgarden.DBInterface.addTask
@@ -16,6 +18,8 @@ import com.garden.taskgarden.DBInterface.updateTask
 import com.garden.taskgarden.RecyclerView.PaddingItemDecoration
 import com.garden.taskgarden.RecyclerView.RecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.edit_popout.view.*
+import kotlinx.android.synthetic.main.task_card_view.*
 import java.security.KeyStore
 
 class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListener {
@@ -53,6 +57,10 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
             adapter=taskAdapter
         }
 
+    }
+
+    override fun onEditClick(id: Int) {
+        editTask(id)
     }
 
     override fun onCompletedClick(id: Int) {
@@ -167,7 +175,36 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
          } catch (e: Exception) {
              Log.d(debugTag, "Got $e while trying to complete task in Main Activity!")
          }
+    }
 
+    fun editTask(id: Int){
+        var task = Task()
+        // get the task object
+        task = findTask(id, this)
 
+        updateTask(task, this)
+        val popoutView = LayoutInflater.from(this).inflate(R.layout.edit_popout, null)
+        val buildPopout = AlertDialog.Builder(this).setView(popoutView).setTitle("Edit Task")
+        val showPopout = buildPopout.show()
+        popoutView.btn_accept.setOnClickListener {
+            showPopout.dismiss()
+            val editTaskText = popoutView.edit_task.text.toString()
+            val editTaskDescription = popoutView.edit_description.text.toString()
+            task.setTitle(editTaskText)
+            task.setDescription(editTaskDescription)
+            updateTask(task, this)
+            updateRecyclerView()
+        }
+
+    /*
+    fun editTask(view: View?){
+        val popoutView = LayoutInflater.from(this).inflate(R.layout.edit_popout, null)
+        val buildPopout = AlertDialog.Builder(this).setView(popoutView).setTitle("Edit Popout")
+        val showPopout = buildPopout.show()
+        popoutView.btn_accept.setOnClickListener {
+            showPopout.dismiss()
+            val editTaskText = popoutView.edit_task.text.toString()
+            val editTaskDescription = popoutView.edit_description.text.toString()
+        }*/
     }
 }
