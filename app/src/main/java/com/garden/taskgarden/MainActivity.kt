@@ -195,15 +195,5 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
             updateRecyclerView()
         }
 
-    /*
-    fun editTask(view: View?){
-        val popoutView = LayoutInflater.from(this).inflate(R.layout.edit_popout, null)
-        val buildPopout = AlertDialog.Builder(this).setView(popoutView).setTitle("Edit Popout")
-        val showPopout = buildPopout.show()
-        popoutView.btn_accept.setOnClickListener {
-            showPopout.dismiss()
-            val editTaskText = popoutView.edit_task.text.toString()
-            val editTaskDescription = popoutView.edit_description.text.toString()
-        }*/
     }
 }
