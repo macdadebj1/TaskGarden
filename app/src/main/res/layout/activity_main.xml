@@ -79,13 +79,23 @@
 
     <Button
         android:id="@+id/btnAddNewTask"
-        android:layout_width="360dp"
-        android:layout_height="71dp"
+        android:layout_width="181dp"
+        android:layout_height="74dp"
+        android:layout_marginBottom="8dp"
         android:onClick="openForm"
         android:text="add new task"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnShowCompletedTasks"
+        android:layout_width="189dp"
+        android:layout_height="79dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="openCompletedTasks"
+        android:text="show completed tasks"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
