@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskGarden.NoActionBar">
-        <activity android:name=".TaskFormActivity"></activity>
+        <activity android:name=".CompletedTasksActivity"></activity>
+        <activity android:name=".TaskFormActivity" />
         <activity
             android:name=".NavigationDrawer"
             android:label="@string/title_activity_navigation"
