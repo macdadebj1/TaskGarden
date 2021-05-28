@@ -24,8 +24,6 @@ import java.security.KeyStore
 
 class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListener {
     private var settingsTalker: SettingsTalker? = null
-    var taskId: EditText? = null
-    var taskName: EditText? = null
 
     // nullable type
     private lateinit var taskAdapter: RecyclerViewAdapter
@@ -34,8 +32,6 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        taskId = findViewById(R.id.taskId)
-        taskName = findViewById(R.id.taskName)
         //dbInterface = new DBInterface();
         settingsTalker = SettingsTalker(this)
         initRecyclerView()
@@ -86,67 +82,16 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
         return ArrayList()
     }
 
-    fun addTask(view: View?) {
-        try {
-            val title = taskName!!.text.toString()
-            val task = Task()
-            task.setTitle(title)
-            task.setDescription("TestDescription!!!")
-            addTask(task, this)
-            taskId!!.setText("")
-            taskName!!.setText("")
-            updateRecyclerView()
-        } catch (e: Exception) {
-            Log.d(debugTag, "Got $e while trying to add task in Main Activity!")
-        }
-    }
-
-    fun findTask(view: View): Task? {
-        try {
-            val id: Int = Integer.parseInt(taskId!!.text.toString())
-            Log.d(debugTag, "Value of ID int: " + taskId!!.text.toString())
-            val task = findTask(id, this)
-            taskId!!.setText("")
-            taskName!!.setText("")
-            return task
-        } catch (e: Exception) {
-            Log.d(debugTag, "Got $e while trying to find task in Main Activity!")
-        }
-        return null
-    }
 
     //fun deleteTask(view: View?) {
     fun deleteTask(id: Int) {
         try {
             //val id: Int = Integer.parseInt(taskId!!.text.toString())
             if (removeTask(id, this)) {
-                taskId!!.setText("")
-                taskName!!.setText("")
-
                 updateRecyclerView()
-            } else {
-                taskId!!.setText("No Match Found")
             }
         } catch (e: Exception) {
             Log.d(debugTag, "Got $e while trying to delete task in Main Activity!")
-        }
-    }
-
-    fun updateTask(view: View?) {
-        val task = Task()
-
-        try {
-            task.setTitle(taskName!!.text.toString())
-            task.setID(Integer.parseInt(taskId!!.text.toString()))
-            if (updateTask(task, this)) {
-                taskId!!.setText("")
-                taskName!!.setText("")
-                updateRecyclerView()
-            } else {
-                taskId!!.setText("No Match Found")
-            }
-        } catch (e: Exception) {
-            Log.d(debugTag, "Got $e while trying to update task in Main Activity!")
         }
     }
 
