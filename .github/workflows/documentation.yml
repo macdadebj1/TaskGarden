@@ -2,7 +2,7 @@ name: Documentation
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   dokka:
@@ -18,7 +18,9 @@ jobs:
             mv app/build/dokka/html ./docs
       - name: Commit changes
         run: |
+          git config --global user.email "macdadeblake@gmail.com"
+          git config --global user.name "Documentation Bot :)"
           git add -f docs
           git diff-index --quiet HEAD || git commit -m "Auto update docs"
       - name: Push documentation
-        run: git push -u origin main
+        run: git push -u origin master
