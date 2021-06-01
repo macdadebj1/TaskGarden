@@ -20,6 +20,10 @@ class CompletedTasksActivity : AppCompatActivity() {
         completedTaskAdaptor.setHasFixedSize(true)
     }
 
+    /**
+     * loadCompletedTasks talks to the database to get all tasks that are marked as completed.
+     * @return ArrayList of completed Task objects.
+     * */
     fun loadCompletedTasks() : ArrayList<Task>{
         try {
             val dbHandler = DBHandler(this, null, null, 1)
