@@ -6,12 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.EditText
-import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.garden.taskgarden.DBInterface.addTask
 import com.garden.taskgarden.DBInterface.findTask
 import com.garden.taskgarden.DBInterface.removeTask
 import com.garden.taskgarden.DBInterface.updateTask
@@ -20,7 +17,6 @@ import com.garden.taskgarden.RecyclerView.RecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.edit_popout.view.*
 import kotlinx.android.synthetic.main.task_card_view.*
-import java.security.KeyStore
 
 class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListener {
     private var settingsTalker: SettingsTalker? = null
@@ -38,7 +34,9 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
         loadData()
 
     }
-
+    /**
+     * Loads list of task objects and sends it to the task adapter.
+     * */
     private fun loadData(){
         val data = loadTasks()
         taskAdapter.submitList(data)
@@ -67,6 +65,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
         deleteTask(id)
     }
 
+    /**Updates the recycler view with any new data.*/
     fun updateRecyclerView(){
         loadData()
         taskAdapter.notifyDataSetChanged()
@@ -75,7 +74,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
     fun loadTasks() :ArrayList<Task>{
         try {
             val dbHandler = DBHandler(this, null, null, 1)
-            return dbHandler.loadHandler()
+            return dbHandler.loadUncompletedHandler()
         } catch (e: Exception) {
             Log.d(debugTag, "Got $e when trying to load tasks in Main Activity.$e")
         }
@@ -83,7 +82,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
     }
 
 
-    //fun deleteTask(view: View?) {
+    /**Called from each task to delete itself.*/
     fun deleteTask(id: Int) {
         try {
             //val id: Int = Integer.parseInt(taskId!!.text.toString())

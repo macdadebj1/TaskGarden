@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.garden.taskgarden.RecyclerView.CompletedTasksAdaptor
-import com.garden.taskgarden.RecyclerView.PaddingItemDecoration
 import kotlinx.android.synthetic.main.completed_tasks.*
 
 class CompletedTasksActivity : AppCompatActivity() {
@@ -24,7 +23,7 @@ class CompletedTasksActivity : AppCompatActivity() {
     fun loadCompletedTasks() : ArrayList<Task>{
         try {
             val dbHandler = DBHandler(this, null, null, 1)
-            return dbHandler.loadCompletedHandler()
+            return dbHandler.loadCompletedHandlers()
         } catch (e: Exception) {
             Log.d(MainActivity.debugTag, "Got $e when trying to load tasks in Main Activity.$e")
         }

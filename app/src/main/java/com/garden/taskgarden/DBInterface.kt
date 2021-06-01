@@ -3,7 +3,7 @@ package com.garden.taskgarden
 import android.content.Context
 
 /**
- * This Class acts as an abstraction layer between DBHandler.java and any activity that may want to
+ * This Class acts as an abstraction layer between DBHandler and any activity that may want to
  * query the database.
  *
  * @author Blake MacDade

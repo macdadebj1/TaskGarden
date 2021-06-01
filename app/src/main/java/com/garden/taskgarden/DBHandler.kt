@@ -10,6 +10,10 @@ import android.util.Log
 import java.util.*
 
 /**
+ *
+ * This class is directly responsible for interacting with and maintaining the database.
+ * Contains methods to create, update, delete, and get handlers in the database.
+ *
  * DO NOT INTERFACE WITH THIS CLASS DIRECTLY!!!
  * IF YOU WANT TO TALK TO THE DATABASE, PLEASE TALK TO DBInterface
  *
@@ -29,8 +33,13 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {}
 
-    // loadHander for loading uncompleted tasks
-    fun loadHandler(): ArrayList<Task> {
+    /**
+     * loadUncompletedHandler gets all tasks from the database that have their completed flag set to 0,
+     * or not completed.
+     *
+     * @return an ArrayList of uncompleted Task objects
+     * */
+    fun loadUncompletedHandler(): ArrayList<Task> {
         val taskArray = ArrayList<Task>()
         val query = "SELECT * FROM $TABLE_NAME"
         val db = this.writableDatabase
@@ -45,10 +54,14 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
         return taskArray
     }
 
-    // loadHander for loading uncompleted tasks
-    fun loadCompletedHandler(): ArrayList<Task> {
+    /**
+     * loadCompletedHandlers gets all completed tasks from the database
+     *
+     * @return an ArrayList of completed Task objects.
+     * */
+    fun loadCompletedHandlers(): ArrayList<Task> {
         val taskArray = ArrayList<Task>()
-        val query = "SELECT * FROM $TABLE_NAME"
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_COMPLETED=1;"
         val db = this.writableDatabase
         val cursor = db.rawQuery(query, null)
         while (cursor.moveToNext()) {
