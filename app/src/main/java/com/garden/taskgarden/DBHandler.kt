@@ -95,6 +95,12 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
         }
     }
 
+    /**
+     * findHandler returns a specific task from the database.
+     *
+     * @param taskId the ID of the task to get from the database.
+     * @return Task object corresponding to the entry in the database.
+     * */
     fun findHandler(taskId: Int): Task {
         val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = '$taskId'"
         val db = this.writableDatabase
@@ -116,7 +122,12 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
         db.close()
         return task
     }
-
+    /**
+     * deleteHandler removes an entry from the database.
+     *
+     * @param ID the primary key of the entry to delete from the database.
+     * @return status of the deletion.
+     * */
     fun deleteHandler(ID: Int): Boolean {
         var result = false
         val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = '$ID'"

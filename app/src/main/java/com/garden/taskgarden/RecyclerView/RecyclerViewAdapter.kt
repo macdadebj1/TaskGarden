@@ -13,13 +13,18 @@ import com.garden.taskgarden.Task
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import java.util.*
 
-//class RecyclerViewAdapter(private val taskList: ArrayList<Task>, application: Application) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+/**
+ * This class is responsible for creating and maintaining the RecyclerViews.
+ * */
 class RecyclerViewAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     //var context: Context
     //var listener: View.OnClickListener? = null
 
     private var tasks: List<Task> = ArrayList()
 
+    /**
+     * Called when the adapter is first created.
+     * */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return TaskViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.task_card_view,parent,false)
@@ -42,31 +47,26 @@ class RecyclerViewAdapter(private val listener: OnItemClickListener) : RecyclerV
         }
     }
 
+    /**
+     * getItemCount returns the number of items in the RecyclerView.
+     * */
     override fun getItemCount(): Int {
         return tasks.size
     }
 
+    /**
+     * submitList used to send an ArrayList to the RecyclerView
+     *
+     * @param taskList new ArrayList for the RecyclerView to display.
+     * */
     fun submitList(taskList: List<Task>){
         tasks = taskList
     }
-    /*class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var title: TextView
-        var description: TextView
-        //var timeToCompleteBy: EditText
-        var view: View
 
-        init {
-            title = itemView.findViewById<View>(R.id.Tasktitle) as TextView
-            description = itemView.findViewById<View>(R.id.Taskdescription) as TextView
-            //timeToCompleteBy = itemView.findViewById<View>(R.id.timeToCompleteBy)
-            view = itemView
-        }
-    }
-
-    init {
-        context = application
-    }*/
-
+    /**
+     * TaskViewHolder is an inner class which holds a single task, RecyclerView holds one for each
+     * task.
+     * */
     inner class TaskViewHolder constructor(itemView: View):RecyclerView.ViewHolder(itemView),
         View.OnClickListener{
 
@@ -78,6 +78,10 @@ class RecyclerViewAdapter(private val listener: OnItemClickListener) : RecyclerV
         val completedButton = itemView.image_complete
         val editButton = itemView.textView
 
+        /**
+         * bind is called whenever each TaskViewHolder is instantiated
+         * @param task the task object that will be represented by the ViewHolder.
+         * */
         fun bind(task: Task){
             title.text = task.title
             description.text = task.description
@@ -91,7 +95,9 @@ class RecyclerViewAdapter(private val listener: OnItemClickListener) : RecyclerV
             completedButton.setOnClickListener(this)
             editButton.setOnClickListener(this)
         }
-
+        /**
+         * onClick is called by the ViewHolder assigned to each object.
+         * */
         override fun onClick(v: View?) {
             Log.d("RecyclerViewAdapter",id.toString())
 

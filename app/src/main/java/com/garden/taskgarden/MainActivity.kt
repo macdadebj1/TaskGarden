@@ -82,7 +82,10 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
     }
 
 
-    /**Called from each task to delete itself.*/
+    /**
+     * Called from each task to delete itself.
+     * @param id the of the task to delete.
+     * */
     fun deleteTask(id: Int) {
         try {
             //val id: Int = Integer.parseInt(taskId!!.text.toString())
