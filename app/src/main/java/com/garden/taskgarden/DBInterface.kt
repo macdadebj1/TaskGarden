@@ -51,7 +51,7 @@ object DBInterface {
     }
 
     /**
-     * deleteTask is a simple method with no error checking, deletes a task from the database;
+     * deleteTask is a simple method with no error checking, deletes a task from the database.
      *
      * @param ID The task ID of the record to delete.
      * @param context Application Context.
@@ -65,7 +65,8 @@ object DBInterface {
     }
 
     /**
-     * updateTask is a simple method with no error checking, updates a task in the database;
+     * updateTask is a simple method with no error checking, updates a task in the database.
+     * pass in an updated version of the Task object you want to change.
      *
      * @param task The updated task object.
      * @param context Application Context.
