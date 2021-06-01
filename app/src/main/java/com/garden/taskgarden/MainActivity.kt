@@ -53,24 +53,50 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
 
     }
 
+    /**
+     * onEditClick is called by the clickListener when the user interacts with the edit button
+     * of a card in the RecyclerView.
+     *
+     * @param id the ID of the task to edit.
+     * */
     override fun onEditClick(id: Int) {
         editTask(id)
     }
 
+    /**
+     * onCompletedClick is called by the clickListener when the user interacts with the complete button
+     * of a card in the RecyclerView.
+     *
+     * @param id the ID of the task to mark as completed.
+     * */
     override fun onCompletedClick(id: Int) {
         completedTask(id)
     }
 
+    /**
+     * onItemClick is called by the clickListener when the user interacts with the delete button
+     * of a card in the RecyckerView.
+     *
+     * @param id the ID of the task to delete.
+     * */
     override fun onItemClick(id: Int) {
         deleteTask(id)
     }
 
-    /**Updates the recycler view with any new data.*/
+    /**
+     * Updates the RecyclerView with any new data.
+     * Call whenever you add tasks to the database and want to see them in the RecyclerView.
+     * */
     fun updateRecyclerView(){
         loadData()
         taskAdapter.notifyDataSetChanged()
     }
 
+    /**
+     * loadTasks gets all the uncompleted tasks from the database and adds them into an ArrayList.
+     *
+     * @return ArrayList of all uncompleted task objects.
+     * */
     fun loadTasks() :ArrayList<Task>{
         try {
             val dbHandler = DBHandler(this, null, null, 1)
@@ -102,37 +128,46 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
         const val debugTag = "MainActivity"
     }
 
+    /**
+     * openForm opens the add task form activity. This allows the user to add a task to the database.
+     *
+     * */
     fun openForm(view: View?){
         val intent = Intent(this@MainActivity, TaskFormActivity::class.java)
         startActivity(intent)
     }
 
+    /**
+     * openCompletedTasks opens the completed Tasks activity. This allows the user to see all their
+     * completed tasks.
+     * */
     fun openCompletedTasks(view: View?){
         val intent = Intent(this@MainActivity, CompletedTasksActivity::class.java)
         startActivity(intent)
     }
 
+    /**
+     * completedTask finds the relavent task from the database, takes it out, marks it as completed,
+     * and then adds it back into the database.
+     * */
     fun completedTask(id: Int) {
          var task = Task()
          try {
-             // get the task object
-             task = findTask(id, this)
-             // change the task completed value to true
+             task = findTask(id, this) //Could we not just update the completed flag in the database? this just seems wasteful...
              task.setCompleted(true)
-             // update the task
              updateTask(task, this)
-             //update recyclerview
              updateRecyclerView()
 
          } catch (e: Exception) {
              Log.d(debugTag, "Got $e while trying to complete task in Main Activity!")
          }
     }
-
+    /**
+     * editTask find the given task in the database and changes it to reflect any updates.
+     * @param id the ID of the task to edit.
+     * */
     fun editTask(id: Int){
-        var task = Task()
-        // get the task object
-        task = findTask(id, this)
+        var task = findTask(id, this)
 
         val popoutView = LayoutInflater.from(this).inflate(R.layout.edit_popout, null)
         val buildPopout = AlertDialog.Builder(this).setView(popoutView).setTitle("Edit Task")
