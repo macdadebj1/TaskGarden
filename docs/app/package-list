@@ -74,8 +74,8 @@ $dokka.location:com.garden.taskgarden/DBHandler/DBHandler/#android.content.Conte
 $dokka.location:com.garden.taskgarden/DBHandler/addHandler/#com.garden.taskgarden.Task/PointingToDeclaration/app/com.garden.taskgarden/-d-b-handler/add-handler.html
 $dokka.location:com.garden.taskgarden/DBHandler/deleteHandler/#kotlin.Int/PointingToDeclaration/app/com.garden.taskgarden/-d-b-handler/delete-handler.html
 $dokka.location:com.garden.taskgarden/DBHandler/findHandler/#kotlin.Int/PointingToDeclaration/app/com.garden.taskgarden/-d-b-handler/find-handler.html
-$dokka.location:com.garden.taskgarden/DBHandler/loadCompletedHandler/#/PointingToDeclaration/app/com.garden.taskgarden/-d-b-handler/load-completed-handler.html
-$dokka.location:com.garden.taskgarden/DBHandler/loadHandler/#/PointingToDeclaration/app/com.garden.taskgarden/-d-b-handler/load-handler.html
+$dokka.location:com.garden.taskgarden/DBHandler/loadCompletedHandlers/#/PointingToDeclaration/app/com.garden.taskgarden/-d-b-handler/load-completed-handlers.html
+$dokka.location:com.garden.taskgarden/DBHandler/loadUncompletedHandler/#/PointingToDeclaration/app/com.garden.taskgarden/-d-b-handler/load-uncompleted-handler.html
 $dokka.location:com.garden.taskgarden/DBHandler/onCreate/#android.database.sqlite.SQLiteDatabase/PointingToDeclaration/app/com.garden.taskgarden/-d-b-handler/on-create.html
 $dokka.location:com.garden.taskgarden/DBHandler/onUpgrade/#android.database.sqlite.SQLiteDatabase#kotlin.Int#kotlin.Int/PointingToDeclaration/app/com.garden.taskgarden/-d-b-handler/on-upgrade.html
 $dokka.location:com.garden.taskgarden/DBHandler/updateTask/#com.garden.taskgarden.Task?/PointingToDeclaration/app/com.garden.taskgarden/-d-b-handler/update-task.html
