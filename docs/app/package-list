@@ -103,8 +103,6 @@ $dokka.location:com.garden.taskgarden/NavigationDrawer///PointingToDeclaration/
 $dokka.location:com.garden.taskgarden/NavigationDrawer/NavigationDrawer/#/PointingToDeclaration/app/com.garden.taskgarden/-navigation-drawer/-navigation-drawer.html
 $dokka.location:com.garden.taskgarden/NavigationDrawer/onCreateOptionsMenu/#android.view.Menu/PointingToDeclaration/app/com.garden.taskgarden/-navigation-drawer/on-create-options-menu.html
 $dokka.location:com.garden.taskgarden/NavigationDrawer/onSupportNavigateUp/#/PointingToDeclaration/app/com.garden.taskgarden/-navigation-drawer/on-support-navigate-up.html
-$dokka.location:com.garden.taskgarden/NullTaskException///PointingToDeclaration/app/com.garden.taskgarden/-null-task-exception/index.html
-$dokka.location:com.garden.taskgarden/NullTaskException/NullTaskException/#kotlin.String?/PointingToDeclaration/app/com.garden.taskgarden/-null-task-exception/-null-task-exception.html
 $dokka.location:com.garden.taskgarden/SettingsTalker.Companion///PointingToDeclaration/app/com.garden.taskgarden/-settings-talker/-companion/index.html
 $dokka.location:com.garden.taskgarden/SettingsTalker///PointingToDeclaration/app/com.garden.taskgarden/-settings-talker/index.html
 $dokka.location:com.garden.taskgarden/SettingsTalker/SettingsTalker/#android.content.Context/PointingToDeclaration/app/com.garden.taskgarden/-settings-talker/-settings-talker.html
