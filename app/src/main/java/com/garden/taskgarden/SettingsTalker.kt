@@ -36,10 +36,20 @@ class SettingsTalker(var context: Context) {
         editor.apply()
     }
 
+    /**
+     * updateEntry updates the given key pair, where a String is required
+     * @param key the key of the stored item to update.
+     * @param value the value to update.
+     * */
     fun updateEntry(key: String?, value: String?) {
         addEntry(key, value)
     }
 
+    /**
+     * updateEntry updates the given key pair, where an Integer is required
+     * @param key the key of the stored item to update.
+     * @param value the value to update.
+     * */
     fun updateEntry(key: String?, value: Int) {
         addEntry(key, value)
     }
