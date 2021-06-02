@@ -9,35 +9,43 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taskList"
         android:layout_width="383dp"
-        android:layout_height="532dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:color/holo_blue_light"
+        android:layout_height="581dp"
+        android:background="@color/RecyclerViewGrey"
         android:foregroundGravity="center_horizontal"
         android:padding="4dp"
         android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnAddNewTask"
-        android:layout_width="181dp"
-        android:layout_height="74dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="openForm"
-        android:text="add new task"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.103" />
 
     <Button
         android:id="@+id/btnShowCompletedTasks"
-        android:layout_width="174dp"
+        android:layout_width="150dp"
         android:layout_height="75dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:onClick="openCompletedTasks"
         android:text="show completed tasks"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskList"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/btnAddNewTask"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:onClick="openForm"
+        android:text="add new task"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskList"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
