@@ -8,7 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="Dark_Green">#FF7C942E</color>
+    <color name="RecyclerViewGrey">#8CA3BD</color>
+    <color name="Dark_Brown">#BD9793</color>
+    <color name="Dark_grey">#485B70</color>
+    <color name="greenish">#B3BD79</color>
+    <color name="Dark_green">#6B704D</color>
+
+    <color name="Green">#FF7C942E</color>
     <color name="Light_Green">#FFC2E05C</color>
     <color name="Blue">#FF729EE0</color>
     <color name="Light_Red">#FFE05846</color>
