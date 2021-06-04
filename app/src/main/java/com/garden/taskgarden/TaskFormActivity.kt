@@ -14,6 +14,10 @@ import kotlinx.android.synthetic.main.add_task_form.*
 import kotlinx.android.synthetic.main.task_card_view.*
 import java.util.*
 
+/**
+ * Class for adding tasks to the database, also has functions for dealing with dates.
+ * @author Jacob Gear
+ */
 class TaskFormActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     var taskName: EditText? = null
     var taskDescription: EditText? = null
@@ -31,6 +35,9 @@ class TaskFormActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
     var savedHour = 0
     var savedMinute = 0
 
+    /**
+     * function called on creation of this class.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_task_form)
@@ -38,6 +45,10 @@ class TaskFormActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
         pickDate()
     }
 
+    /**
+     * function for getting the date/time from the user and setting the date and time variables
+     * in this class.
+     */
     private fun getDateTimeCalendar() {
         val cal : Calendar = Calendar.getInstance()
         day = cal.get(Calendar.DAY_OF_MONTH)
@@ -47,14 +58,20 @@ class TaskFormActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
         minute = cal.get(Calendar.MINUTE)
     }
 
+    /**
+     * function called on creation of this class, for allowing the user to set a date/time with
+     * their task.
+     */
     private fun pickDate() {
-
         task_time.setOnClickListener {
             getDateTimeCalendar()
             DatePickerDialog(this, this, year, month, day).show()
         }
     }
 
+    /**
+     * function used for adding a task to the database.
+     */
     fun addTaskForm(view: View?){
         taskName = findViewById(R.id.etForm_Task)
         taskDescription = findViewById(R.id.etForm_Description)
@@ -75,6 +92,9 @@ class TaskFormActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
         }
     }
 
+    /**
+     * Function for setting the date.
+     */
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         savedDay = dayOfMonth
         savedMonth = month
@@ -84,10 +104,11 @@ class TaskFormActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
         TimePickerDialog(this, this, hour, minute, true).show()
     }
 
+    /**
+     * Function for setting the time.
+     */
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
         savedHour = hourOfDay
         savedMinute = minute
-
-        //time_completed.text = "$savedDay-$savedMonth-$savedYear\n Hour: $savedHour Minute: "
     }
 }

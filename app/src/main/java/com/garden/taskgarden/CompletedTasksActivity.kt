@@ -12,6 +12,11 @@ import com.garden.taskgarden.RecyclerView.RecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.completed_tasks.*
 
+/**
+ * Class for loading completed tasks from the database into the ArrayList, and creating a
+ * RecyclerView with the completed task ArrayList.
+ * @author Jacob Gear
+ */
 class CompletedTasksActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +25,9 @@ class CompletedTasksActivity : AppCompatActivity() {
         initRecyclerView()
     }
 
+    /**
+     * Function that initialises the RecyclerView
+     */
     private fun initRecyclerView(){
         taskList.apply{
             val completedTasksList = loadCompletedTasks()
@@ -46,6 +54,9 @@ class CompletedTasksActivity : AppCompatActivity() {
         return ArrayList()
     }
 
+    /**
+     * function that opens CompletedTaskActivity screen.
+     * */
     fun openMain(view: View?){
         val intent = Intent(this@CompletedTasksActivity, MainActivity::class.java)
         startActivity(intent)

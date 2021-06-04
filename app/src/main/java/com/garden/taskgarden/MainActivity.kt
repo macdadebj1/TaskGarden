@@ -18,6 +18,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.edit_popout.view.*
 import kotlinx.android.synthetic.main.task_card_view.*
 
+/**
+ * Class for initialising and loading un completed tasks in the RecyclerView. Class also has
+ * functions for updating, deleting, and editing tasks.
+ */
 class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListener {
     private var settingsTalker: SettingsTalker? = null
 
@@ -42,6 +46,9 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
         taskAdapter.submitList(data)
     }
 
+    /**
+     * Function that initialises the RecyclerView
+     */
     private fun initRecyclerView(){
         taskList.apply{
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -87,7 +94,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
      * Updates the RecyclerView with any new data.
      * Call whenever you add tasks to the database and want to see them in the RecyclerView.
      * */
-    fun updateRecyclerView(){
+    private fun updateRecyclerView(){
         loadData()
         taskAdapter.notifyDataSetChanged()
     }
@@ -97,7 +104,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
      *
      * @return ArrayList of all uncompleted task objects.
      * */
-    fun loadTasks() :ArrayList<Task>{
+    private fun loadTasks() :ArrayList<Task>{
         try {
             val dbHandler = DBHandler(this, null, null, 1)
             return dbHandler.loadUncompletedHandler()
@@ -112,7 +119,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
      * Called from each task to delete itself.
      * @param id the of the task to delete.
      * */
-    fun deleteTask(id: Int) {
+    private fun deleteTask(id: Int) {
         try {
             //val id: Int = Integer.parseInt(taskId!!.text.toString())
             if (removeTask(id, this)) {
@@ -152,7 +159,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
      * and then adds it back into the database.
      * @param id the ID of the task to be marked as completed.
      * */
-    fun completedTask(id: Int) {
+    private fun completedTask(id: Int) {
          var task = Task()
          try {
              task = findTask(id, this) //Could we not just update the completed flag in the database? this just seems wasteful...
@@ -168,7 +175,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
      * editTask find the given task in the database and changes it to reflect any updates.
      * @param id the ID of the task to edit.
      * */
-    fun editTask(id: Int){
+    private fun editTask(id: Int){
         var task = findTask(id, this)
 
         val popoutView = LayoutInflater.from(this).inflate(R.layout.edit_popout, null)

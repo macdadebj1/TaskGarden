@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.task_card_view.view.*
 import java.util.*
 
 /**
- * This class is responsible for creating and maintaining the RecyclerViews.
+ * This class is responsible for creating and maintaining the RecyclerView for activity_main.xml.
  * */
 class RecyclerViewAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     //var context: Context
@@ -35,6 +35,9 @@ class RecyclerViewAdapter(private val listener: OnItemClickListener) : RecyclerV
         return ViewHolder(v)*/
     }
 
+    /**
+     * Function for binding tasks with there task information
+     * */
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         /*val index = holder.adapterPosition
         holder.title.text = taskList[position].title
@@ -111,6 +114,9 @@ class RecyclerViewAdapter(private val listener: OnItemClickListener) : RecyclerV
 
     }
 
+    /**
+     * Interface where all classes that implement this interface have to have these methods.
+     */
     interface OnItemClickListener {
         fun onItemClick(id: Int)
         fun onCompletedClick(id: Int)
