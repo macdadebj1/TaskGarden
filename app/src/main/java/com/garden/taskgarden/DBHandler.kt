@@ -26,7 +26,7 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
                 COLUMN_NAME + " TEXT, " +
                 COLUMN_DESCRIPTION + " TEXT, " +
                 COLUMN_COMPLETED + " INTEGER, " +
-                COLUMN_COMPLETED_BY + " DATETIME " +
+                COLUMN_COMPLETED_BY + " TEXT " +
                 ")"
         db.execSQL(CREATE_TABLE)
     }
@@ -46,7 +46,7 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
         val cursor = db.rawQuery(query, null)
         while (cursor.moveToNext()) {
             if (cursor.getInt(3) == 0) {
-                taskArray.add(Task(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getInt(4)))
+                taskArray.add(Task(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(4)))
             }
         }
         cursor.close()
@@ -66,7 +66,7 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
         val cursor = db.rawQuery(query, null)
         while (cursor.moveToNext()) {
             if (cursor.getInt(3) == 1) {
-                taskArray.add(Task(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getInt(4)))
+                taskArray.add(Task(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(4)))
             }
         }
         cursor.close()
@@ -116,7 +116,7 @@ class DBHandler(context: Context?, name: String?, factory: CursorFactory?, versi
                 0 -> task.setCompleted(false)
                 else -> task.setCompleted(false)
             }
-            task.setCompletedBy(cursor.getInt(4))
+            task.setCompletedBy(cursor.getString(4))
         }
         cursor.close()
         db.close()
