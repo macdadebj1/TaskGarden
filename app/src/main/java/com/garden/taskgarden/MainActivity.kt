@@ -185,8 +185,12 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
             showPopout.dismiss()
             val editTaskText = popoutView.edit_task.text.toString()
             val editTaskDescription = popoutView.edit_description.text.toString()
-            task.setTitle(editTaskText)
-            task.setDescription(editTaskDescription)
+            if(editTaskText.isNotEmpty()) {
+                task.setTitle(editTaskText)
+            }
+            if(editTaskDescription.isNotEmpty()) {
+                task.setDescription(editTaskDescription)
+            }
             updateTask(task, this)
             updateRecyclerView()
         }
