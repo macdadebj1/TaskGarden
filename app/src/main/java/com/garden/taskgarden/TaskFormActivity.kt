@@ -62,8 +62,11 @@ class TaskFormActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
             val task = Task()
             task.setTitle(taskName!!.text.toString())
             task.setDescription(taskDescription!!.text.toString())
-            //task.updateCompletedBy(Integer.parseInt(taskToCompleteBy!!.text.toString()))
-
+            if(savedDay == 0 && savedMonth == 0 && savedYear == 0 && savedHour == 0 && savedMinute == 0){
+                task.setCompletedBy("No date and time selected")
+            } else {
+                task.setCompletedBy("$savedDay/$savedMonth/$savedYear $savedHour:$savedMinute")
+            }
             DBInterface.addTask(task, this)
             val intent = Intent(this@TaskFormActivity, MainActivity::class.java)
             startActivity(intent)
@@ -85,6 +88,6 @@ class TaskFormActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
         savedHour = hourOfDay
         savedMinute = minute
 
-        time_completed.text = "$savedDay-$savedMonth-$savedYear\n Hour: $savedHour Minute: "
+        //time_completed.text = "$savedDay-$savedMonth-$savedYear\n Hour: $savedHour Minute: "
     }
 }
