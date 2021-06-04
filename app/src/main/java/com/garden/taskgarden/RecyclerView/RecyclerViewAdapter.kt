@@ -72,7 +72,7 @@ class RecyclerViewAdapter(private val listener: OnItemClickListener) : RecyclerV
 
         val title = itemView.textView
         var description = itemView.textView2
-        // var time = itemView.timeToCompleteBy
+        var time = itemView.time_completed
         var id = 0;
         val deleteButton = itemView.image_delete
         val completedButton = itemView.image_complete
@@ -85,6 +85,7 @@ class RecyclerViewAdapter(private val listener: OnItemClickListener) : RecyclerV
         fun bind(task: Task){
             title.text = task.title
             description.text = task.description
+            time.text = task.timeToCompletedBy
             id = task.iD;
             Log.d("RecyclerViewAdapter","BIND TASK! $id")
             //time.setText(task.timeToCompletedBy)
