@@ -90,16 +90,11 @@ $dokka.location:com.garden.taskgarden/MainActivity.Companion///PointingToDeclara
 $dokka.location:com.garden.taskgarden/MainActivity.Companion/debugTag/#/PointingToDeclaration/app/com.garden.taskgarden/-main-activity/-companion/debug-tag.html
 $dokka.location:com.garden.taskgarden/MainActivity///PointingToDeclaration/app/com.garden.taskgarden/-main-activity/index.html
 $dokka.location:com.garden.taskgarden/MainActivity/MainActivity/#/PointingToDeclaration/app/com.garden.taskgarden/-main-activity/-main-activity.html
-$dokka.location:com.garden.taskgarden/MainActivity/completedTask/#kotlin.Int/PointingToDeclaration/app/com.garden.taskgarden/-main-activity/completed-task.html
-$dokka.location:com.garden.taskgarden/MainActivity/deleteTask/#kotlin.Int/PointingToDeclaration/app/com.garden.taskgarden/-main-activity/delete-task.html
-$dokka.location:com.garden.taskgarden/MainActivity/editTask/#kotlin.Int/PointingToDeclaration/app/com.garden.taskgarden/-main-activity/edit-task.html
-$dokka.location:com.garden.taskgarden/MainActivity/loadTasks/#/PointingToDeclaration/app/com.garden.taskgarden/-main-activity/load-tasks.html
 $dokka.location:com.garden.taskgarden/MainActivity/onCompletedClick/#kotlin.Int/PointingToDeclaration/app/com.garden.taskgarden/-main-activity/on-completed-click.html
 $dokka.location:com.garden.taskgarden/MainActivity/onEditClick/#kotlin.Int/PointingToDeclaration/app/com.garden.taskgarden/-main-activity/on-edit-click.html
 $dokka.location:com.garden.taskgarden/MainActivity/onItemClick/#kotlin.Int/PointingToDeclaration/app/com.garden.taskgarden/-main-activity/on-item-click.html
 $dokka.location:com.garden.taskgarden/MainActivity/openCompletedTasks/#android.view.View?/PointingToDeclaration/app/com.garden.taskgarden/-main-activity/open-completed-tasks.html
 $dokka.location:com.garden.taskgarden/MainActivity/openForm/#android.view.View?/PointingToDeclaration/app/com.garden.taskgarden/-main-activity/open-form.html
-$dokka.location:com.garden.taskgarden/MainActivity/updateRecyclerView/#/PointingToDeclaration/app/com.garden.taskgarden/-main-activity/update-recycler-view.html
 $dokka.location:com.garden.taskgarden/NavigationDrawer///PointingToDeclaration/app/com.garden.taskgarden/-navigation-drawer/index.html
 $dokka.location:com.garden.taskgarden/NavigationDrawer/NavigationDrawer/#/PointingToDeclaration/app/com.garden.taskgarden/-navigation-drawer/-navigation-drawer.html
 $dokka.location:com.garden.taskgarden/NavigationDrawer/onCreateOptionsMenu/#android.view.Menu/PointingToDeclaration/app/com.garden.taskgarden/-navigation-drawer/on-create-options-menu.html
