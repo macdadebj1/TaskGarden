@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
 
     /**
      * openForm opens the add task form activity. This allows the user to add a task to the database.
-     *
+     * @param selected view
      * */
     fun openForm(view: View?){
         val intent = Intent(this@MainActivity, TaskFormActivity::class.java)
@@ -140,6 +140,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
     /**
      * openCompletedTasks opens the completed Tasks activity. This allows the user to see all their
      * completed tasks.
+     * @param selected view
      * */
     fun openCompletedTasks(view: View?){
         val intent = Intent(this@MainActivity, CompletedTasksActivity::class.java)
@@ -147,8 +148,9 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
     }
 
     /**
-     * completedTask finds the relavent task from the database, takes it out, marks it as completed,
+     * completedTask finds the relevant task from the database, takes it out, marks it as completed,
      * and then adds it back into the database.
+     * @param id the ID of the task to be marked as completed.
      * */
     fun completedTask(id: Int) {
          var task = Task()
