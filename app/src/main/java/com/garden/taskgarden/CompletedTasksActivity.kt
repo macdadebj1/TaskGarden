@@ -7,6 +7,9 @@ import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.garden.taskgarden.RecyclerView.CompletedTasksAdaptor
+import com.garden.taskgarden.RecyclerView.PaddingItemDecoration
+import com.garden.taskgarden.RecyclerView.RecyclerViewAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.completed_tasks.*
 
 class CompletedTasksActivity : AppCompatActivity() {
@@ -14,10 +17,19 @@ class CompletedTasksActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.completed_tasks)
 
-        val completedTasksList = loadCompletedTasks()
-        completedTaskAdaptor.adapter = CompletedTasksAdaptor(completedTasksList)
-        completedTaskAdaptor.layoutManager = LinearLayoutManager(this)
-        completedTaskAdaptor.setHasFixedSize(true)
+        initRecyclerView()
+    }
+
+    private fun initRecyclerView(){
+        taskList.apply{
+            val completedTasksList = loadCompletedTasks()
+            completedTaskAdaptor.layoutManager = LinearLayoutManager(this@CompletedTasksActivity)
+            val topSpacingDecoration = PaddingItemDecoration(30)
+            completedTaskAdaptor.addItemDecoration((topSpacingDecoration))
+            completedTaskAdaptor.adapter = CompletedTasksAdaptor(completedTasksList)
+            //completedTaskAdaptor.setHasFixedSize(true)
+        }
+
     }
 
     /**
