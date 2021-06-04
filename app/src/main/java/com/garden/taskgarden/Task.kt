@@ -43,7 +43,7 @@ class Task {
      *
      * @return time to complete the task by.
      */
-    var timeToCompletedBy = 0
+    var timeToCompletedBy: String? = null
         private set
 
     /**
@@ -53,11 +53,11 @@ class Task {
      * @param description description of the task.
      * @param completeBy date to complete the task by.
      */
-    constructor(id:Int,title: String?, description: String?, completeBy: Int) {
+    constructor(id:Int,title: String?, description: String?, timeToCompleteBy: String?) {
         this.iD = id
         this.title = title
         this.description = description
-        timeToCompletedBy = completeBy
+        this.timeToCompletedBy = timeToCompleteBy
         completed = false
     }
 
@@ -108,7 +108,7 @@ class Task {
      *
      * @param time the new time to complete by to give the object.
      */
-    fun setCompletedBy(time: Int) {
+    fun setCompletedBy(time: String?) {
         timeToCompletedBy = time
     }
 
