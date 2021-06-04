@@ -10,6 +10,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 
+/**
+ * This class is not currently used.
+ * Contains boilerplate code for a navigation drawer "Hamburger Menu"
+ * */
 class NavigationDrawer : AppCompatActivity() {
     private var mAppBarConfiguration: AppBarConfiguration? = null
     override fun onCreate(savedInstanceState: Bundle?) {
