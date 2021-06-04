@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.garden.taskgarden.R
 import com.garden.taskgarden.Task
+import kotlinx.android.synthetic.main.completedtask_card.view.*
 import kotlinx.android.synthetic.main.task_card_view.view.*
 
 class CompletedTasksAdaptor(private val completedList: List<Task>) :
         RecyclerView.Adapter<CompletedTasksAdaptor.CompletedTasksViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompletedTasksViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.task_card_view,parent,
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.completedtask_card,parent,
                 false)
         return CompletedTasksViewHolder(itemView)
     }
@@ -31,8 +32,8 @@ class CompletedTasksAdaptor(private val completedList: List<Task>) :
     override fun getItemCount() = completedList.size
 
     class CompletedTasksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val title = itemView.textView
-        val description = itemView.textView2
+        val title = itemView.completedText
+        val description = itemView.completedDescription
         var id = 0;
 
         fun bind(task: Task){
