@@ -11,7 +11,7 @@ import java.util.*
 
 /**
  *
- * This class is directly responsible for interacting with and maintaining the database (test KDoc).
+ * This class is directly responsible for interacting with and maintaining the database.
  * Contains methods to create, update, delete, and get handlers in the database.
  *
  * DO NOT INTERFACE WITH THIS CLASS DIRECTLY!!!
