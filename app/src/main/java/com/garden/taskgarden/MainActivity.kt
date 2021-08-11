@@ -196,4 +196,6 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnItemClickListene
         }
 
     }
+
+    // rip
 }
